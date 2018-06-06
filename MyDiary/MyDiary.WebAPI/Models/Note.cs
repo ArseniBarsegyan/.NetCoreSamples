@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MyDiary.WebAPI.Entities
+namespace MyDiary.WebAPI.Models
 {
     /// <summary>
     /// Notes table in database.

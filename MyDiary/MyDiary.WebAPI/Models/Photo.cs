@@ -1,4 +1,4 @@
-﻿namespace MyDiary.WebAPI.Entities
+﻿namespace MyDiary.WebAPI.Models
 {
     /// <summary>
     /// Photos table in database.

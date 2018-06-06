@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MyDiary.WebAPI.Entities;
+using MyDiary.WebAPI.Models;
 
 namespace MyDiary.WebAPI
 {
@@ -26,8 +26,7 @@ namespace MyDiary.WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
-            var opt = new DbContextOptionsBuilder().UseSqlServer(connectionString);
-            services.AddTransient<ApplicationContext>(s => new ApplicationContext(opt.Options, "mydiary"));
+            services.AddDbContext<ApplicationContext>(options =>options.UseSqlServer(connectionString));
             services.AddMvc();
         }
 
