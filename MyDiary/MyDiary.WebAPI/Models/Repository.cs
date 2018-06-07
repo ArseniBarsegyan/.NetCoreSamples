@@ -10,7 +10,7 @@ namespace MyDiary.WebAPI.Models
     /// Generic repository.
     /// </summary>
     /// <typeparam name="TEntity">Class that implements <see cref="T:MyDiary.WebAPI.Models.Entity" /> class.</typeparam>
-    public class Repository<TEntity> : IDisposable
+    public class Repository<TEntity> : IDisposable, IRepository<TEntity>
         where TEntity : Entity
     {
         private readonly DbContext _dbContext;

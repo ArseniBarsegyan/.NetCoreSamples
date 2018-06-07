@@ -27,6 +27,8 @@ namespace MyDiary.WebAPI
         {
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationContext>(options =>options.UseSqlServer(connectionString));
+            services.AddScoped<DbContext, ApplicationContext>();
+            services.AddTransient<IRepository<Note>, Repository<Note>>();
             services.AddMvc();
         }
 
@@ -37,7 +39,6 @@ namespace MyDiary.WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseMvc();
         }
     }
