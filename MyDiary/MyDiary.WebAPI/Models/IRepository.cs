@@ -9,7 +9,7 @@ namespace MyDiary.WebAPI.Models
         Task CreateAsync(TEntity item);
         Task<TEntity> GetByIdAsync(int? id);
         void Update(TEntity item);
-        Task DeleteAsync(int? id);
+        Task<TEntity> DeleteAsync(int? id);
         Task SaveAsync();
     }
 }

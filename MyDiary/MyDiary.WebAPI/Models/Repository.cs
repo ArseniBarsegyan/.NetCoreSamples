@@ -43,13 +43,14 @@ namespace MyDiary.WebAPI.Models
             _dbContext.Entry(item).State = EntityState.Modified;
         }
 
-        public async Task DeleteAsync(int? id)
+        public async Task<TEntity> DeleteAsync(int? id)
         {
             var item = await DbSet.FirstOrDefaultAsync(x => x.Id == id);
             if (item != null)
             {
                 DbSet.Remove(item);
             }
+            return item;
         }
 
         public async Task SaveAsync()
