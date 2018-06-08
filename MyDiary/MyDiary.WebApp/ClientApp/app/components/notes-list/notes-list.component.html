@@ -5,8 +5,12 @@
     <title></title>
 </head>
 <body>
-    <p *ngFor="let note of notes">
-        {{ note.id }} {{ note.description }} {{ note.date | date : 'short' }}
-    </p>
+    <div class="col-xs-8">
+        <div class="list-group">
+            <a style="cursor: pointer" class="list-group-item" routerLinkActive="active" *ngFor="let note of notes">
+                {{ note.id }} {{ note.description }} {{ note.date | date : 'short' }}
+            </a>
+        </div>
+    </div>    
 </body>
 </html>

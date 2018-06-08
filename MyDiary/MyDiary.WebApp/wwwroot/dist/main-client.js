@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "321e3a3ed4c7969979ed"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "4e30042f01e4687bac43"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -70468,7 +70468,7 @@ module.exports = "<div class='main-nav'>\r\n    <div class='navbar navbar-invers
 /* 65 */
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <meta charset=\"utf-8\" />\r\n    <title></title>\r\n</head>\r\n<body>\r\n    <p *ngFor=\"let note of notes\">\r\n        {{ note.id }} {{ note.description }} {{ note.date | date : 'short' }}\r\n    </p>\r\n</body>\r\n</html>";
+module.exports = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <meta charset=\"utf-8\" />\r\n    <title></title>\r\n</head>\r\n<body>\r\n    <div class=\"col-xs-8\">\r\n        <div class=\"list-group\">\r\n            <a style=\"cursor: pointer\" class=\"list-group-item\" routerLinkActive=\"active\" *ngFor=\"let note of notes\">\r\n                {{ note.id }} {{ note.description }} {{ note.date | date : 'short' }}\r\n            </a>\r\n        </div>\r\n    </div>    \r\n</body>\r\n</html>";
 
 /***/ }),
 /* 66 */
