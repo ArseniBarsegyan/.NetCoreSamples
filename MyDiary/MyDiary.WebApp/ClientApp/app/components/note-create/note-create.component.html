@@ -6,5 +6,13 @@
 </head>
 <body>
     <p>Note create component</p>
+    <form [formGroup]='createComponentForm' (ngSubmit)="onSubmit(createComponentForm)">
+        <textarea class="form-control" formControlName="description" placeholder="description"></textarea>
+        <div *ngIf="createComponentForm.controls['description'].touched && createComponentForm.controls['description'].valid">
+            <span *ngIf="createComponentForm.controls['description'].hasError('required')">Description is required</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]='!createComponentForm.valid'>Create</button>
+    </form>
 </body>
 </html>
