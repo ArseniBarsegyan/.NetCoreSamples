@@ -7,7 +7,7 @@
 <body>
     <div class="col-xs-8">
         <div class="list-group">
-            <a style="cursor: pointer" class="list-group-item" routerLinkActive="active" *ngFor="let note of notes">
+            <a *ngFor="let note of notes" style="cursor: pointer" class="list-group-item" [routerLink]="['/note-details', note.id]" routerLinkActive="active">
                 {{ note.id }} {{ note.description }} {{ note.date | date : 'short' }}
             </a>
         </div>

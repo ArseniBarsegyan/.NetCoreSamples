@@ -22,7 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\note-details\note-details.component.ts" />
     <None Remove="ClientApp\app\components\notes-list\notes-list.component.ts" />
+    <None Remove="ClientApp\app\components\notes.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,7 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\note-details\note-details.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\notes-list\notes-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\notes.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

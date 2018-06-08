@@ -10,6 +10,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { NotesListComponent } from './components/notes-list/notes-list.component';
+import { NoteDetailsComponent } from './components/note-details/note-details.component';
+import { NotesService } from './components/notes.service';
 
 @NgModule({
     declarations: [
@@ -18,8 +20,10 @@ import { NotesListComponent } from './components/notes-list/notes-list.component
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        NotesListComponent
+        NotesListComponent,
+        NoteDetailsComponent
     ],
+    providers: [NotesService],
     imports: [
         CommonModule,
         HttpModule,
@@ -30,6 +34,7 @@ import { NotesListComponent } from './components/notes-list/notes-list.component
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'notes-list', component: NotesListComponent },
+            { path: 'note-details/:id', component: NoteDetailsComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
