@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\components\note-create\note-create.component.ts" />
     <None Remove="ClientApp\app\components\note-details\note-details.component.ts" />
     <None Remove="ClientApp\app\components\notes-list\notes-list.component.ts" />
     <None Remove="ClientApp\app\components\notes.service.ts" />
@@ -32,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\note-create\note-create.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\note-details\note-details.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\notes-list\notes-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\notes.service.ts" />

@@ -4,8 +4,9 @@
     <meta charset="utf-8" />
     <title></title>
 </head>
-<body>
+<body>    
     <div class="col-xs-8">
+        <a class="btn btn-success" [routerLink]="['/note-create']">Create note</a>
         <div class="list-group">
             <a *ngFor="let note of notes" style="cursor: pointer" class="list-group-item" [routerLink]="['/note-details', note.id]" routerLinkActive="active">
                 {{ note.id }} {{ note.description }} {{ note.date | date : 'short' }}

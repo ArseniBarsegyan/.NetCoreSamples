@@ -11,6 +11,7 @@ import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { NotesListComponent } from './components/notes-list/notes-list.component';
 import { NoteDetailsComponent } from './components/note-details/note-details.component';
+import { NoteCreateComponent } from './components/note-create/note-create.component';
 import { NotesService } from './components/notes.service';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { NotesService } from './components/notes.service';
         FetchDataComponent,
         HomeComponent,
         NotesListComponent,
-        NoteDetailsComponent
+        NoteDetailsComponent,
+        NoteCreateComponent
     ],
     providers: [NotesService],
     imports: [
@@ -35,6 +37,7 @@ import { NotesService } from './components/notes.service';
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'notes-list', component: NotesListComponent },
             { path: 'note-details/:id', component: NoteDetailsComponent },
+            { path: 'note-create', component: NoteCreateComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
