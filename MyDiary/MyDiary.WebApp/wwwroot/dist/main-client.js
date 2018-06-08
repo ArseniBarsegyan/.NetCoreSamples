@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "76a560c54e5e496197d4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "321e3a3ed4c7969979ed"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -69965,9 +69965,6 @@ var FetchDataComponent = (function () {
         http.get(baseUrl + 'api/SampleData/WeatherForecasts').subscribe(function (result) {
             _this.forecasts = result.json();
         }, function (error) { return console.error(error); });
-        http.get(baseUrl + 'api/Notes/').subscribe(function (result) {
-            _this.notes = result.json();
-        }, function (error) { return console.error(error); });
     }
     FetchDataComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* Component */])({
@@ -70045,6 +70042,7 @@ var NavMenuComponent = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NotesListComponent; });
+/* unused harmony export Note */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -70058,7 +70056,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var NotesListComponent = (function () {
     function NotesListComponent() {
-        this.notes = ['test1', 'test2'];
+        this.notes = [new Note(1, 'test description 1', new Date(2018, 6, 8, 11, 28, 30)),
+            new Note(2, 'test description 2', new Date(2017, 5, 4, 10, 30, 1))];
     }
     NotesListComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* Component */])({
@@ -70068,6 +70067,15 @@ var NotesListComponent = (function () {
         __metadata("design:paramtypes", [])
     ], NotesListComponent);
     return NotesListComponent;
+}());
+
+var Note = (function () {
+    function Note(id, description, date) {
+        this.id = id;
+        this.description = description;
+        this.date = date;
+    }
+    return Note;
 }());
 
 
@@ -70460,7 +70468,7 @@ module.exports = "<div class='main-nav'>\r\n    <div class='navbar navbar-invers
 /* 65 */
 /***/ (function(module, exports) {
 
-module.exports = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <meta charset=\"utf-8\" />\r\n    <title></title>\r\n</head>\r\n<body>\r\n    <p *ngFor=\"let note of notes\">\r\n        {{ note }}\r\n    </p>\r\n</body>\r\n</html>";
+module.exports = "<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <meta charset=\"utf-8\" />\r\n    <title></title>\r\n</head>\r\n<body>\r\n    <p *ngFor=\"let note of notes\">\r\n        {{ note.id }} {{ note.description }} {{ note.date | date : 'short' }}\r\n    </p>\r\n</body>\r\n</html>";
 
 /***/ }),
 /* 66 */
