@@ -34,6 +34,17 @@ namespace MyDiary.WebApp.Controllers
             return new ObjectResult(note);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody]Note note)
+        {
+            if (ModelState.IsValid)
+            {
+                await _repository.CreateAsync(note);
+                return Ok(note);
+            }
+            return BadRequest(ModelState);
+        }
+
         [HttpPut]
         public async Task<IActionResult> Put([FromBody]Note note)
         {
