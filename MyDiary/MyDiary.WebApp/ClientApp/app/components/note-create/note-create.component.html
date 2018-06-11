@@ -12,6 +12,12 @@
             <span *ngIf="createComponentForm.controls['description'].hasError('required')">Description is required</span>
         </div>
 
+        <!-- File uploading -->
+        <div class="form-group">
+            <label for="photo">Photo</label>
+            <input type="file" id="photo" (change)="onFileChange($event)" #fileInput />
+        </div>
+
         <button type="submit" class="btn btn-primary" [disabled]='!createComponentForm.valid'>Create</button>
     </form>
 </body>
