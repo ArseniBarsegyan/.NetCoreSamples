@@ -8,10 +8,9 @@ export class NotesService {
     constructor(private http: Http, @Inject('BASE_URL') private baseUrl: string) {
         this.http.get(this.baseUrl + 'api/notes/').subscribe(result => {
             var res = result.json();
-            var convRes = result.json() as Note1[];
+            var convRes = result.json() as Note[];
         }, error => console.error(error));
-        this.notes = [new Note(0, 'test description 1', new Date(2018, 6, 8, 11, 28, 30)),
-        new Note(1, 'test description 2', new Date(2017, 5, 4, 10, 30, 1))];
+        this.notes = [];
     }
 
     getAllNotes() {
@@ -22,27 +21,23 @@ export class NotesService {
         return this.notes[id];
     }
 
-    createNote(note: Note1) {        
-        return this.http.post(this.baseUrl + 'api/notes/', note);
+    createNote(note: Note) {
+        return this.http.post(this.baseUrl + 'api/notes/', JSON.stringify(note));
     }
 }
 
-export class Note1 {
-    constructor(public id?: number,
-        public description?: string,
-        public date?: Date,
-        public photos?: Photo[]) { }
+export interface Entity {
+    id: number;
 }
 
-export class Photo {
-    constructor(public id?: number,
-        public name?: string,
-        public noteId?: number,
-        public image?: any) { }
+export interface Note extends Entity {    
+    description: string;
+    date: Date;
+    photos: Photo[];
 }
 
-export class Note {
-    constructor(public id?: number,
-        public description?: string,
-        public date?: Date) { }
+export interface Photo extends Entity {    
+    name: string;
+    noteId: number;
+    image: string;
 }

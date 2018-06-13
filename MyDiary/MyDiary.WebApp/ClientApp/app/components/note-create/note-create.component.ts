@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { NotesService, Note, Note1, Photo } from '../notes.service';
+import { NotesService, Note, Photo } from '../notes.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgForm, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
@@ -25,10 +25,10 @@ export class NoteCreateComponent implements OnInit {
 
     // Create photo and note from form data
     onSubmit(createComponentForm: NgForm) {
-        console.log(createComponentForm);
-        const photo = new Photo(0, createComponentForm.controls['file'].value['filename'], 0, createComponentForm.controls['file'].value['value'])
-        const note = new Note1(0, createComponentForm.controls['description'].value, new Date(), [photo]);       
+        var photo: Photo = { id: 0, name: createComponentForm.controls['file'].value['filename'], noteId: 0, image: createComponentForm.controls['file'].value['value'] };
+        var note: Note = { id: 0, description: createComponentForm.controls['description'].value, date: new Date(), photos: [photo] };       
 
+        console.log(note);
         this.notesService.createNote(note);
     }
 
