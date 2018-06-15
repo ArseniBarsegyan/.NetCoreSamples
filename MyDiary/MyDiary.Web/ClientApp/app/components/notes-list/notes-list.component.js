@@ -16,7 +16,14 @@ var NotesListComponent = /** @class */ (function () {
     NotesListComponent.prototype.loadNotes = function () {
         var _this = this;
         this.notesService.getNotes().subscribe(function (data) {
-            _this.notes = data;
+            if (data !== null) {
+                _this.notes = data;
+                _this.isNotesListEmpty = false;
+            }
+            else {
+                _this.notes = [];
+                _this.isNotesListEmpty = true;
+            }
         });
     };
     NotesListComponent.prototype.ngOnInit = function () {

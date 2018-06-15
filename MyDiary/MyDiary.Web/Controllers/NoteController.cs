@@ -21,7 +21,12 @@ namespace MyDiary.Web.Controllers
         [HttpGet]
         public IEnumerable<Note> Get()
         {
-            return _repository.GetAll().ToList();
+            var data = _repository.GetAll().ToList();
+            if (data != null)
+            {
+                return data;
+            }
+            return new List<Note>();
         }
 
         [HttpGet("{id}")]

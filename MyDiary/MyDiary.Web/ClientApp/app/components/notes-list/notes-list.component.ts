@@ -8,12 +8,20 @@ import { Note } from '../../note';
 })
 export class NotesListComponent implements OnInit {    
     notes: Note[];
+    isNotesListEmpty: boolean;
 
     constructor(private notesService: NotesService) { }
 
     loadNotes() {
         this.notesService.getNotes().subscribe((data: Note[]) => {
-            this.notes = data;
+            if (data !== null) {
+                this.notes = data;
+                this.isNotesListEmpty = false;
+            }
+            else {
+                this.notes = [];
+                this.isNotesListEmpty = true;
+            }
         });
     }
 
