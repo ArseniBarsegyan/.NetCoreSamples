@@ -1,5 +1,6 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NotesService } from './notes.service';
@@ -8,7 +9,7 @@ import { NotesListComponent } from './components/notes-list/notes-list.component
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
-    imports: [BrowserModule, FormsModule, AppRoutingModule],
+    imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
     declarations: [AppComponent, NotesListComponent, PageNotFoundComponent],
     providers: [NotesService],
     bootstrap: [AppComponent]

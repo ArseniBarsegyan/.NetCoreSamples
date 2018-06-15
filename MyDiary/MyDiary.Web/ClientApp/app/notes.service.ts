@@ -9,7 +9,7 @@ export class NotesService {
     constructor(private http: HttpClient) {
     }
 
-    getNotes() {
+    getNotes() {        
         return this.http.get(this.url);
     }
 
