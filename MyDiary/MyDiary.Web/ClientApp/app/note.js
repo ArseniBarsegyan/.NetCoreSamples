@@ -1,5 +1,9 @@
 var Note = /** @class */ (function () {
-    function Note() {
+    function Note(Id, Description, Date, Photos) {
+        this.Id = Id;
+        this.Description = Description;
+        this.Date = Date;
+        this.Photos = Photos;
     }
     return Note;
 }());

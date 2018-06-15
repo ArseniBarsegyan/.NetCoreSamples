@@ -1,1 +1,14 @@
 ﻿<h2>Create note component works!</h2>
+<form [formGroup]='createComponentForm' (ngSubmit)="onSubmit(createComponentForm)">
+    <textarea class="form-control" formControlName="description" placeholder="description"></textarea>
+    <div *ngIf="createComponentForm.controls['description'].touched && createComponentForm.controls['description'].valid">
+        <span *ngIf="createComponentForm.controls['description'].hasError('required')">Description is required</span>
+    </div>
+
+    <div class="form-group">
+        <label for="photo">Photo</label>
+        <input type="file" id="photo" (change)="onFileChange($event)" #fileInput />
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]='!createComponentForm.valid'>Create</button>
+</form>
