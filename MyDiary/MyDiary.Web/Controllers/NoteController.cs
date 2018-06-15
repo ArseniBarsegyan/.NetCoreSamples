@@ -43,7 +43,7 @@ namespace MyDiary.Web.Controllers
             return Ok();
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody]Note note)
         {
             if (note == null)
