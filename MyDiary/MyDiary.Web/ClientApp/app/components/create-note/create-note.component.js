@@ -40,8 +40,10 @@ var CreateNoteComponent = /** @class */ (function () {
         }
     };
     CreateNoteComponent.prototype.onSubmit = function (createComponentForm) {
-        var photo = new Photo(0, createComponentForm.controls['file'].value['filename'], 0, createComponentForm.controls['file'].value['value']);
-        var note = new Note(0, createComponentForm.controls['description'].value, new Date(), [photo]);
+        var note = new Note(0, createComponentForm.controls['description'].value, new Date());
+        var photo = new Photo(0, createComponentForm.controls['file'].value['filename'], 0, note, createComponentForm.controls['file'].value['value']);
+        note.photos = [photo];
+        console.log(note);
         this.notesService.createNote(note);
     };
     CreateNoteComponent = __decorate([

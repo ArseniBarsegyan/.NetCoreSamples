@@ -24,7 +24,7 @@ var NotesService = /** @class */ (function () {
         return this.http.post(this.url, note);
     };
     NotesService.prototype.updateNote = function (note) {
-        return this.http.put(this.url + '/' + note.Id, note);
+        return this.http.put(this.url + '/' + note.id, note);
     };
     NotesService.prototype.deleteNote = function (id) {
         return this.http.delete(this.url + '/' + id);

@@ -1,9 +1,9 @@
 ﻿import { Note } from "./note";
 
 export class Photo {
-    constructor(public Id?: number,
-        public Name?: string,
-        public NoteId?: number,
-        public Note?: Note,
-        public Image?: string) { }
+    constructor(public id?: number,
+        public name?: string,
+        public noteId?: number,
+        public note?: Note,
+        public image?: string) { }
 }

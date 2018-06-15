@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MyDiary.Web.Models;
 
@@ -21,12 +20,7 @@ namespace MyDiary.Web.Controllers
         [HttpGet]
         public IEnumerable<Note> Get()
         {
-            var data = _repository.GetAll().ToList();
-            if (data != null)
-            {
-                return data;
-            }
-            return new List<Note>();
+            return _repository.GetAll().ToList();            
         }
 
         [HttpGet("{id}")]
@@ -41,11 +35,14 @@ namespace MyDiary.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]Note note)
+        public async Task<IActionResult> Post([FromBody]Note note)
         {
-            var httpRequest = HttpContext.Request;
-            var body = httpRequest.Body;
-            return Ok();
+            if (ModelState.IsValid)
+            {
+                await _repository.CreateAsync(note);
+                return Ok(note);
+            }
+            return BadRequest();
         }
 
         [HttpPut("{id}")]

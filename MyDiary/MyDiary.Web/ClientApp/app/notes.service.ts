@@ -22,7 +22,7 @@ export class NotesService {
     }
 
     updateNote(note: Note) {
-        return this.http.put(this.url + '/' + note.Id, note);
+        return this.http.put(this.url + '/' + note.id, note);
     }
 
     deleteNote(id: number) {

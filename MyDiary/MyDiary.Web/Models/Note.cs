@@ -8,13 +8,8 @@ namespace MyDiary.Web.Models
     /// </summary>
     public class Note : Entity
     {
-        public Note()
-        {
-            Photos = new List<Photo>();
-        }
-
         public string Description { get; set; }
         public DateTime Date { get; set; }
-        public List<Photo> Photos { get; set; }
+        public IEnumerable<Photo> Photos { get; set; }
     }
 }
