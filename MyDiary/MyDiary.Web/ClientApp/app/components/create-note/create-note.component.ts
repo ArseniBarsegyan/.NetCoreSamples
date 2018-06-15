@@ -38,11 +38,11 @@ export class CreateNoteComponent {
     }
 
     onSubmit(createComponentForm: NgForm) {
-        const note = new Note(0, createComponentForm.controls['description'].value, new Date());
-        const photo = new Photo(0, createComponentForm.controls['file'].value['filename'], 0, note, createComponentForm.controls['file'].value['value']);
+        const note = new Note(1, createComponentForm.controls['description'].value, new Date());
+        const photo = new Photo(1, createComponentForm.controls['file'].value['filename'], 1, createComponentForm.controls['file'].value['value']);
         note.photos = [photo];
         console.log(note);
 
-        this.notesService.createNote(note);
+        this.notesService.createNote(note).subscribe(data => { alert('Ok'); }, error => { console.log(error) });
     }
 }
