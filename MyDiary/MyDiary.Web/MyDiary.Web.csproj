@@ -8,6 +8,9 @@
   <ItemGroup>
     <None Remove="ClientApp\app\app.component.ts" />
     <None Remove="ClientApp\app\app.module.ts" />
+    <None Remove="ClientApp\app\note.ts" />
+    <None Remove="ClientApp\app\notes.service.ts" />
+    <None Remove="ClientApp\app\photo.ts" />
     <None Remove="ClientApp\main.ts" />
     <None Remove="ClientApp\polyfills.ts" />
   </ItemGroup>
@@ -20,6 +23,9 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\app.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\app.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\note.ts" />
+    <TypeScriptCompile Include="ClientApp\app\notes.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\photo.ts" />
     <TypeScriptCompile Include="ClientApp\main.ts" />
     <TypeScriptCompile Include="ClientApp\polyfills.ts" />
   </ItemGroup>

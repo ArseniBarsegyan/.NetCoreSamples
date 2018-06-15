@@ -8,7 +8,7 @@ using MyDiary.Web.Models;
 namespace MyDiary.Web.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Note")]
+    [Route("api/notes")]
     public class NoteController : Controller
     {
         private IRepository<Note> _repository;
@@ -44,13 +44,13 @@ namespace MyDiary.Web.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromBody]Note note)
+        public async Task<IActionResult> Put(int id, [FromBody]Note note)
         {
             if (note == null)
             {
                 return BadRequest();
             }
-            await _repository.CreateAsync(note);
+            _repository.Update(note);
             await _repository.SaveAsync();
             return Ok(note);
         }
