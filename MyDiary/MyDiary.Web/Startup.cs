@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Microsoft.AspNetCore.SpaServices.Webpack;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MyDiary.Web.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyDiary.Web
 {
@@ -39,16 +34,13 @@ namespace MyDiary.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
-                // добавляем сборку через webpack
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-                {
-                    HotModuleReplacement = true
-                });
             }
 
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Hello World!");
+            });
+
             app.UseMvc();
         }
     }

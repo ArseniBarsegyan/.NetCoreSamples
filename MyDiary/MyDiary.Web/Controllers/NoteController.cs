@@ -8,7 +8,7 @@ using MyDiary.Web.Models;
 namespace MyDiary.Web.Controllers
 {
     [Produces("application/json")]
-    [Route("api/notes")]
+    [Route("api/Note")]
     public class NoteController : Controller
     {
         private IRepository<Note> _repository;

@@ -11,7 +11,7 @@ using System;
 namespace MyDiary.Web.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20180614132917_Initial")]
+    [Migration("20180615072835_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
