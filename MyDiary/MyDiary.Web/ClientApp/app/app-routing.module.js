@@ -8,9 +8,11 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from '@angular/router';
 import { NotesListComponent } from "./components/notes-list/notes-list.component";
 import { PageNotFoundComponent } from "./components/page-not-found/page-not-found.component";
+import { CreateNoteComponent } from "./components/create-note/create-note.component";
 var appRoutes = [
     { path: '', redirectTo: '/notes', pathMatch: 'full' },
     { path: 'notes', component: NotesListComponent },
+    { path: 'notes/create', component: CreateNoteComponent },
     { path: '**', component: PageNotFoundComponent }
 ];
 var AppRoutingModule = /** @class */ (function () {
