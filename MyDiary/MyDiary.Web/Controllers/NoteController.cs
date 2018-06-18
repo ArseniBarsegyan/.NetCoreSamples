@@ -39,7 +39,13 @@ namespace MyDiary.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                foreach(var photo in note.Photos)
+                {
+                    photo.Note = note;
+                }
+
                 await _repository.CreateAsync(note);
+                await _repository.SaveAsync();
                 return Ok(note);
             }
             return BadRequest();
