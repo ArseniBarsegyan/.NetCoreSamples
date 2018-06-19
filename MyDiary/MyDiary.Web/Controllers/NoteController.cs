@@ -20,7 +20,7 @@ namespace MyDiary.Web.Controllers
         [HttpGet]
         public IEnumerable<Note> Get()
         {
-            return _repository.GetAll().ToList();            
+            return _repository.GetAll().ToList();
         }
 
         [HttpGet("{id}")]
