@@ -20,7 +20,15 @@ namespace MyDiary.Web.Controllers
         [HttpGet]
         public IEnumerable<Note> Get()
         {
-            return _repository.GetAll().ToList();
+            var allNotes = _repository.GetAll().ToList();
+            foreach(var note in allNotes)
+            {
+                foreach(var photo in note.Photos)
+                {
+                    photo.Note = null;                    
+                }
+            }
+            return allNotes;
         }
 
         [HttpGet("{id}")]

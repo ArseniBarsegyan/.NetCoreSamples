@@ -4,5 +4,5 @@
     <p>Notes list is empty</p>
 </div>
 <div class="list-group" *ngFor="let note of notes">
-    <a class="list-group-item" [routerLink]="['edit',note.Id]"> {{ note.Date | date }} {{ note.Description }}</a>
+    <a class="list-group-item" [routerLink]="['edit',note.id]"> {{ note.date | date }} {{ note.description }}</a>
 </div>
