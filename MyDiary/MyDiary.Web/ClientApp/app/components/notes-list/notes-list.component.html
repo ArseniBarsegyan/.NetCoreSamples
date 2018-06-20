@@ -1,8 +1,9 @@
-﻿<h2>Notes list component works!</h2>
-<a class="btn btn-primary" [routerLink]="['create']">Create note</a>
-<div *ngIf="isNotesListEmpty">
-    <p>Notes list is empty</p>
-</div>
-<div class="list-group" *ngFor="let note of notes">
-    <a class="list-group-item" [routerLink]="['edit',note.id]"> {{ note.date | date }} {{ note.description }}</a>
+﻿<div class="notes-list">
+    <a class="btn btn-primary" [routerLink]="['create']">Create note</a>
+    <div *ngIf="isNotesListEmpty">
+        <p>Notes list is empty</p>
+    </div>
+    <div class="list-group" *ngFor="let note of notes">
+        <a class="list-group-item" [routerLink]="['edit',note.id]"> {{ note.date | date }} {{ note.description }}</a>
+    </div>
 </div>

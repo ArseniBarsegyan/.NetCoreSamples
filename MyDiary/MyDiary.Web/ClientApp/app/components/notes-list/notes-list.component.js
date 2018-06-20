@@ -33,6 +33,7 @@ var NotesListComponent = /** @class */ (function () {
         Component({
             selector: 'notes-list',
             templateUrl: './notes-list.component.html',
+            styleUrls: ['./notes-list.component.css']
         }),
         __metadata("design:paramtypes", [NotesService])
     ], NotesListComponent);

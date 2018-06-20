@@ -12,6 +12,7 @@ var PageNotFoundComponent = /** @class */ (function () {
         Component({
             selector: 'page-not-found',
             templateUrl: './page-not-found.component.html',
+            styleUrls: ['./page-not-fount.component.css']
         })
     ], PageNotFoundComponent);
     return PageNotFoundComponent;
