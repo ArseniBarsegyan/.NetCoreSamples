@@ -4,6 +4,9 @@
         <p>Notes list is empty</p>
     </div>
     <div class="list-group" *ngFor="let note of notes">
-        <a class="list-group-item" [routerLink]="['edit',note.id]"> {{ note.date | date }} {{ note.description }}</a>
+        <div class="list-group-item">
+            <img src="data:image/gif;base64,{{ note.photos[0].image }}" height="50" alt="img"/>
+            <a [routerLink]="['edit',note.id]"> {{ note.date | date }} {{ note.description }}</a>
+        </div>        
     </div>
 </div>
