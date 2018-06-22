@@ -8,10 +8,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { NotesListComponent } from './components/notes-list/notes-list.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { CreateNoteComponent } from './components/create-note/create-note.component';
+import { NoteDetailComponent } from './components/note-detail/note-detail.component';
 
 @NgModule({
     imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule],
-    declarations: [AppComponent, NotesListComponent, CreateNoteComponent, PageNotFoundComponent],
+    declarations: [AppComponent, NotesListComponent, CreateNoteComponent, NoteDetailComponent, PageNotFoundComponent],
     providers: [NotesService],
     bootstrap: [AppComponent]
 })

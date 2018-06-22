@@ -34,12 +34,20 @@ namespace MyDiary.Web.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var note = await _repository.GetByIdAsync(id);
             if (note == null)
             {
                 return NotFound();
             }
-            return new ObjectResult(note);
+            foreach(var photo in note.Photos)
+            {
+                photo.Note = null;
+            }
+            return Ok(note);
         }
 
         [HttpPost]

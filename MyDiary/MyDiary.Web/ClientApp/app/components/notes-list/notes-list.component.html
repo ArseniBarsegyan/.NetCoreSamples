@@ -6,7 +6,7 @@
         </div>
         <div class="list-group">
             <div *ngFor="let note of notes">                
-                <a class="list-group-item" [routerLink]="['edit',note.id]">
+                <a class="list-group-item" [routerLink]="['detail',note.id]" routerLinkActive="active">
                     <img src="data:image/gif;base64,{{ note.photos[0].image }}" height="50" alt="img" />
                     <p class="list-group-item-heading">{{ note.date | date }}</p>
                     <p class="list-group-item-text">{{ note.description }}</p>                    

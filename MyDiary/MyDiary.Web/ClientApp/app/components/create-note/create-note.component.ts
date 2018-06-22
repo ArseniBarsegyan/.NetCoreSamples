@@ -3,16 +3,18 @@ import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { NotesService } from '../../notes.service';
 import { Photo } from '../../photo';
 import { Note } from '../../note';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'create-note',
     templateUrl: './create-note.component.html',
+    styleUrls: ['./create-note.component.css']
 })
 export class CreateNoteComponent {
     createComponentForm: FormGroup;
     description: string = '';
 
-    constructor(private notesService: NotesService, private formbuilder: FormBuilder) {
+    constructor(private notesService: NotesService, private formbuilder: FormBuilder, private router: Router) {
     }
 
     ngOnInit() {
@@ -44,5 +46,6 @@ export class CreateNoteComponent {
         console.log(note);
 
         this.notesService.createNote(note).subscribe(data => { alert('Ok'); }, error => { console.log(error) });
+        this.router.navigate(['notes']);
     }
 }

@@ -12,10 +12,12 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NotesService } from '../../notes.service';
 import { Photo } from '../../photo';
 import { Note } from '../../note';
+import { Router } from '@angular/router';
 var CreateNoteComponent = /** @class */ (function () {
-    function CreateNoteComponent(notesService, formbuilder) {
+    function CreateNoteComponent(notesService, formbuilder, router) {
         this.notesService = notesService;
         this.formbuilder = formbuilder;
+        this.router = router;
         this.description = '';
     }
     CreateNoteComponent.prototype.ngOnInit = function () {
@@ -45,13 +47,15 @@ var CreateNoteComponent = /** @class */ (function () {
         note.photos = [photo];
         console.log(note);
         this.notesService.createNote(note).subscribe(function (data) { alert('Ok'); }, function (error) { console.log(error); });
+        this.router.navigate(['notes']);
     };
     CreateNoteComponent = __decorate([
         Component({
             selector: 'create-note',
             templateUrl: './create-note.component.html',
+            styleUrls: ['./create-note.component.css']
         }),
-        __metadata("design:paramtypes", [NotesService, FormBuilder])
+        __metadata("design:paramtypes", [NotesService, FormBuilder, Router])
     ], CreateNoteComponent);
     return CreateNoteComponent;
 }());

@@ -10,6 +10,7 @@
     <None Remove="ClientApp\app\app.component.ts" />
     <None Remove="ClientApp\app\app.module.ts" />
     <None Remove="ClientApp\app\components\create-note\create-note.component.ts" />
+    <None Remove="ClientApp\app\components\note-detail\note-detail.component.ts" />
     <None Remove="ClientApp\app\components\notes-list\notes-list.component.ts" />
     <None Remove="ClientApp\app\components\page-not-found\page-not-found.component.ts" />
     <None Remove="ClientApp\app\note.ts" />
@@ -29,6 +30,7 @@
     <TypeScriptCompile Include="ClientApp\app\app.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\app.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\create-note\create-note.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\note-detail\note-detail.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\notes-list\notes-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\page-not-found\page-not-found.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\note.ts" />
