@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using MyDiary.Web.Models;
@@ -85,6 +87,12 @@ namespace MyDiary.Web
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseMvc();
+
+            app.Run(async context =>
+            {
+                context.Response.ContentType = "text/html";
+                await context.Response.SendFileAsync(Path.Combine(env.WebRootPath, "index.html"));
+            });
 
             dbContext.Database.EnsureCreated();
         }
