@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyDiary.Web.Models
 {
     /// <summary>
     /// ApplicationContext class.
     /// </summary>
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : IdentityDbContext
     {
         /// <inheritdoc />
         /// <summary>
