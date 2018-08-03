@@ -15,13 +15,28 @@ import { NotesListComponent } from './components/notes-list/notes-list.component
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { CreateNoteComponent } from './components/create-note/create-note.component';
 import { NoteDetailComponent } from './components/note-detail/note-detail.component';
+import { SigninComponent } from "./components/auth/signin/signin.component";
+import { HeaderComponent } from "./components/header/header.component";
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         NgModule({
-            imports: [BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule],
-            declarations: [AppComponent, NotesListComponent, CreateNoteComponent, NoteDetailComponent, PageNotFoundComponent],
+            imports: [
+                BrowserModule,
+                ReactiveFormsModule,
+                AppRoutingModule,
+                HttpClientModule
+            ],
+            declarations: [
+                AppComponent,
+                NotesListComponent,
+                CreateNoteComponent,
+                NoteDetailComponent,
+                PageNotFoundComponent,
+                SigninComponent,
+                HeaderComponent
+            ],
             providers: [NotesService],
             bootstrap: [AppComponent]
         })
