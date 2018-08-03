@@ -10,8 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { LoginModel } from "../loginModel";
 var SigninComponent = /** @class */ (function () {
-    function SigninComponent(formbuilder, router) {
+    function SigninComponent(authService, formbuilder, router) {
+        this.authService = authService;
         this.formbuilder = formbuilder;
         this.router = router;
     }
@@ -21,9 +24,12 @@ var SigninComponent = /** @class */ (function () {
             password: ['', [Validators.required]]
         });
     };
-    SigninComponent.prototype.onSignin = function (signInForm) {
+    SigninComponent.prototype.onSubmit = function (signInForm) {
         var name = signInForm.controls['name'].value;
         var password = signInForm.controls['password'].value;
+        var loginModel = new LoginModel(name, password);
+        this.authService.login(loginModel)
+            .subscribe(function (data) { alert('Login successful'); }, function (error) { console.log(error); });
     };
     SigninComponent = __decorate([
         Component({
@@ -31,7 +37,7 @@ var SigninComponent = /** @class */ (function () {
             templateUrl: './signin.component.html',
             styleUrls: ['./signin.component.css']
         }),
-        __metadata("design:paramtypes", [FormBuilder, Router])
+        __metadata("design:paramtypes", [AuthService, FormBuilder, Router])
     ], SigninComponent);
     return SigninComponent;
 }());

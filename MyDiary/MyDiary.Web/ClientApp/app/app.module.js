@@ -17,6 +17,7 @@ import { CreateNoteComponent } from './components/create-note/create-note.compon
 import { NoteDetailComponent } from './components/note-detail/note-detail.component';
 import { SigninComponent } from "./components/auth/signin/signin.component";
 import { HeaderComponent } from "./components/header/header.component";
+import { AuthService } from './components/auth/auth.service';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -37,7 +38,7 @@ var AppModule = /** @class */ (function () {
                 SigninComponent,
                 HeaderComponent
             ],
-            providers: [NotesService],
+            providers: [NotesService, AuthService],
             bootstrap: [AppComponent]
         })
     ], AppModule);

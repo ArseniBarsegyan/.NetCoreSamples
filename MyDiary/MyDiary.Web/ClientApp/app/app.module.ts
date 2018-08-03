@@ -11,6 +11,7 @@ import { CreateNoteComponent } from './components/create-note/create-note.compon
 import { NoteDetailComponent } from './components/note-detail/note-detail.component';
 import {SigninComponent} from "./components/auth/signin/signin.component";
 import {HeaderComponent} from "./components/header/header.component";
+import { AuthService } from './components/auth/auth.service';
 
 @NgModule({
     imports: [
@@ -27,7 +28,7 @@ import {HeaderComponent} from "./components/header/header.component";
         SigninComponent,
         HeaderComponent
     ],
-    providers: [NotesService],
+    providers: [NotesService, AuthService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

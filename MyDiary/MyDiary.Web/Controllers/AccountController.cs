@@ -31,12 +31,12 @@ namespace MyDiary.Web.Controllers
         [HttpPost]
         public async Task<object> Login([FromBody] LoginDto model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(model.Name, model.Password, false, false);
 
             if (result.Succeeded)
             {
-                var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
-                return await GenerateJwtToken(model.Email, appUser);
+                var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Name);
+                return await GenerateJwtToken(model.Name, appUser);
             }
 
             throw new ApplicationException("INVALID_LOGIN_ATTEMPT");

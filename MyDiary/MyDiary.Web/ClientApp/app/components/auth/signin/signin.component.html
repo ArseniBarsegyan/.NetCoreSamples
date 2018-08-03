@@ -1,6 +1,6 @@
 ﻿<div class="row">
     <h2>Sign in</h2>
-    <form [formGroup]='signInForm' (ngSubmit)="onSubmit(createComponentForm)">
+    <form [formGroup]='signInForm' (ngSubmit)="onSubmit(signInForm)">
         <div class="form-group">
             <input type="text" class="form-control" formControlName="name" placeholder="name"/>
             <div *ngIf="signInForm.controls['name'].touched && signInForm.controls['name'].valid">
