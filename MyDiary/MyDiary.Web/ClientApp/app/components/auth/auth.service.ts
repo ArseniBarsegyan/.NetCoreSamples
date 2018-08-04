@@ -4,12 +4,22 @@ import { LoginModel } from './loginModel';
 
 @Injectable()
 export class AuthService {
+    token: string;
     private url = "/Account/";
 
     constructor(private http: HttpClient) {
     }
 
     login(model: LoginModel) {
-        return this.http.post(this.url + "Login", model);
+        var result = this.http.post(this.url + "Login", model)
+            .subscribe(
+                data => {
+                    alert('Login successful');
+                    this.token = data.toString();
+                },
+                error => {
+                    alert('Login failed');
+                }
+            );
     }
 }

@@ -28,8 +28,7 @@ var SigninComponent = /** @class */ (function () {
         var name = signInForm.controls['name'].value;
         var password = signInForm.controls['password'].value;
         var loginModel = new LoginModel(name, password);
-        this.authService.login(loginModel)
-            .subscribe(function (data) { alert('Login successful'); }, function (error) { console.log(error); });
+        this.authService.login(loginModel);
     };
     SigninComponent = __decorate([
         Component({

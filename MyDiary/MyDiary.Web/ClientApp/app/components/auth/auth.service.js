@@ -15,7 +15,14 @@ var AuthService = /** @class */ (function () {
         this.url = "/Account/";
     }
     AuthService.prototype.login = function (model) {
-        return this.http.post(this.url + "Login", model);
+        var _this = this;
+        var result = this.http.post(this.url + "Login", model)
+            .subscribe(function (data) {
+            alert('Login successful');
+            _this.token = data.toString();
+        }, function (error) {
+            alert('Login failed');
+        });
     };
     AuthService = __decorate([
         Injectable(),

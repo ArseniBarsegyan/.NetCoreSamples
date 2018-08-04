@@ -27,7 +27,6 @@ export class SigninComponent implements OnInit {
 
         var loginModel = new LoginModel(name, password);
 
-        this.authService.login(loginModel)
-            .subscribe(data => { alert('Login successful'); }, error => { console.log(error) });
+        this.authService.login(loginModel);
     }
 }
