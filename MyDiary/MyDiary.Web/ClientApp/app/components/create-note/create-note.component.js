@@ -46,7 +46,11 @@ var CreateNoteComponent = /** @class */ (function () {
         var photo = new Photo(0, createComponentForm.controls['file'].value['filename'], 0, createComponentForm.controls['file'].value['value']);
         note.photos = [photo];
         console.log(note);
-        this.notesService.createNote(note).subscribe(function (data) { alert('Ok'); }, function (error) { console.log(error); });
+        this.notesService.createNote(note).subscribe(function (data) {
+            alert('Ok');
+        }, function (error) {
+            console.log(error);
+        });
         this.router.navigate(['notes']);
     };
     CreateNoteComponent = __decorate([

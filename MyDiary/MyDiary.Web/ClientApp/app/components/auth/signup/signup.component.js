@@ -11,32 +11,32 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-var SigninComponent = /** @class */ (function () {
-    function SigninComponent(authService, formbuilder, router) {
+var SignupComponent = /** @class */ (function () {
+    function SignupComponent(authService, formbuilder, router) {
         this.authService = authService;
         this.formbuilder = formbuilder;
         this.router = router;
     }
-    SigninComponent.prototype.ngOnInit = function () {
-        this.signInForm = this.formbuilder.group({
-            name: ['', [Validators.required]],
+    SignupComponent.prototype.ngOnInit = function () {
+        this.signUpForm = this.formbuilder.group({
+            email: ['', [Validators.required]],
             password: ['', [Validators.required]]
         });
     };
-    SigninComponent.prototype.onSubmit = function (signInForm) {
-        var name = signInForm.controls['name'].value;
-        var password = signInForm.controls['password'].value;
-        this.authService.login(name, password);
+    SignupComponent.prototype.onSubmit = function (signUpForm) {
+        var email = signUpForm.controls['email'].value;
+        var password = signUpForm.controls['password'].value;
+        this.authService.register(email, password);
     };
-    SigninComponent = __decorate([
+    SignupComponent = __decorate([
         Component({
-            selector: 'app-signin',
-            templateUrl: './signin.component.html',
-            styleUrls: ['./signin.component.css']
+            selector: 'app-signup',
+            templateUrl: './signup.component.html',
+            styleUrls: ['./signup.component.css']
         }),
         __metadata("design:paramtypes", [AuthService, FormBuilder, Router])
-    ], SigninComponent);
-    return SigninComponent;
+    ], SignupComponent);
+    return SignupComponent;
 }());
-export { SigninComponent };
-//# sourceMappingURL=signin.component.js.map
+export { SignupComponent };
+//# sourceMappingURL=signup.component.js.map

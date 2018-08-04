@@ -36,7 +36,7 @@ namespace MyDiary.Web.Controllers
             if (result.Succeeded)
             {
                 var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Name);
-                return GenerateJwtToken(model.Name, appUser);
+                return await GenerateJwtToken(model.Name, appUser);
             }
 
             throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
@@ -55,13 +55,13 @@ namespace MyDiary.Web.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, false);
-                return GenerateJwtToken(model.Email, user);
+                return await GenerateJwtToken(model.Email, user);
             }
 
             throw new ApplicationException("UNKNOWN_ERROR");
         }
 
-        private object GenerateJwtToken(string email, IdentityUser user)
+        private async Task<object> GenerateJwtToken(string email, IdentityUser user)
         {
             var claims = new List<Claim>
             {

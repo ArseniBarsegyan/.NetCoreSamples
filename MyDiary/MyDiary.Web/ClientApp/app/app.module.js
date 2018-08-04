@@ -18,6 +18,7 @@ import { NoteDetailComponent } from './components/note-detail/note-detail.compon
 import { SigninComponent } from "./components/auth/signin/signin.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { AuthService } from './components/auth/auth.service';
+import { SignupComponent } from "./components/auth/signup/signup.component";
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -36,6 +37,7 @@ var AppModule = /** @class */ (function () {
                 NoteDetailComponent,
                 PageNotFoundComponent,
                 SigninComponent,
+                SignupComponent,
                 HeaderComponent
             ],
             providers: [NotesService, AuthService],

@@ -18,7 +18,9 @@ var NoteDetailComponent = /** @class */ (function () {
         this.route.params.subscribe(function (params) {
             _this.id = params['id'];
         });
-        this.notesService.getNoteById(this.id).subscribe(function (result) { _this.note = result; });
+        this.notesService.getNoteById(this.id).subscribe(function (result) {
+            _this.note = result;
+        });
     }
     NoteDetailComponent.prototype.ngOnInit = function () {
     };

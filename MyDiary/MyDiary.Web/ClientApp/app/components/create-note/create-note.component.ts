@@ -1,9 +1,9 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
-import { NotesService } from '../../notes.service';
-import { Photo } from '../../photo';
-import { Note } from '../../note';
-import { Router } from '@angular/router';
+﻿import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormBuilder, Validators, NgForm} from '@angular/forms';
+import {NotesService} from '../../notes.service';
+import {Photo} from '../../photo';
+import {Note} from '../../note';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'create-note',
@@ -45,7 +45,11 @@ export class CreateNoteComponent {
         note.photos = [photo];
         console.log(note);
 
-        this.notesService.createNote(note).subscribe(data => { alert('Ok'); }, error => { console.log(error) });
+        this.notesService.createNote(note).subscribe(data => {
+            alert('Ok');
+        }, error => {
+            console.log(error)
+        });
         this.router.navigate(['notes']);
     }
 }

@@ -8,21 +8,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 var AuthService = /** @class */ (function () {
     function AuthService(http) {
         this.http = http;
         this.url = "/Account/";
     }
-    AuthService.prototype.login = function (model) {
+    AuthService.prototype.login = function (name, password) {
         var _this = this;
-        var result = this.http.post(this.url + "Login", model)
-            .subscribe(function (data) {
+        var myHeaders = new HttpHeaders().set('Content-type', 'application/json');
+        this.http.post(this.url + "Login", JSON.stringify({ name: name, password: password }), { headers: myHeaders })
+            .subscribe(function (token) {
             alert('Login successful');
-            _this.token = data.toString();
+            _this.token = token.toString();
         }, function (error) {
-            alert('Login failed');
+            console.log(error);
+            alert('Login failed ' + _this.token);
         });
+    };
+    AuthService.prototype.register = function (email, password) {
+        var _this = this;
+        var myHeaders = new HttpHeaders().set('Content-type', 'application/json');
+        this.http.post(this.url + "Register", JSON.stringify({ email: email, password: password }), { headers: myHeaders })
+            .subscribe(function (token) {
+            alert('Register successful');
+            _this.token = token.toString();
+        }, function (error) {
+            console.log(error);
+            alert('Register failed');
+        });
+    };
+    AuthService.prototype.getToken = function () {
+        return this.token;
     };
     AuthService = __decorate([
         Injectable(),

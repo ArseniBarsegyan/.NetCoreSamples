@@ -11,9 +11,11 @@ import { PageNotFoundComponent } from "./components/page-not-found/page-not-foun
 import { CreateNoteComponent } from "./components/create-note/create-note.component";
 import { NoteDetailComponent } from "./components/note-detail/note-detail.component";
 import { SigninComponent } from "./components/auth/signin/signin.component";
+import { SignupComponent } from "./components/auth/signup/signup.component";
 var appRoutes = [
     { path: '', redirectTo: '/notes', pathMatch: 'full' },
     { path: 'signin', component: SigninComponent },
+    { path: 'signup', component: SignupComponent },
     { path: 'notes', component: NotesListComponent },
     { path: 'notes/detail/:id', component: NoteDetailComponent },
     { path: 'notes/create', component: CreateNoteComponent },

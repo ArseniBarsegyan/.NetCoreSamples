@@ -12,6 +12,7 @@ import { NoteDetailComponent } from './components/note-detail/note-detail.compon
 import {SigninComponent} from "./components/auth/signin/signin.component";
 import {HeaderComponent} from "./components/header/header.component";
 import { AuthService } from './components/auth/auth.service';
+import {SignupComponent} from "./components/auth/signup/signup.component";
 
 @NgModule({
     imports: [
@@ -26,6 +27,7 @@ import { AuthService } from './components/auth/auth.service';
         NoteDetailComponent,
         PageNotFoundComponent,
         SigninComponent,
+        SignupComponent,
         HeaderComponent
     ],
     providers: [NotesService, AuthService],
