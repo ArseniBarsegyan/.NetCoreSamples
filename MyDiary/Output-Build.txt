@@ -1,5 +1,0 @@
-﻿1>------ Build started: Project: MyDiary.Web, Configuration: Debug Any CPU ------
-1>Controllers\AccountController.cs(64,36,64,52): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.
-1>MyDiary.Web -> E:\IT\.NetCoreSamples\MyDiary\MyDiary.Web\bin\Debug\netcoreapp2.0\MyDiary.Web.dll
-1>Done building project "MyDiary.Web.csproj".
-========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
