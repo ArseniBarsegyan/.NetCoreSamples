@@ -13,7 +13,7 @@ namespace ConsoleClient
         private static async Task MainAsync()
         {
             //Discover the identity server
-            var identityServer = await DiscoveryClient.GetAsync("http://localhost:49631/");
+            var identityServer = await DiscoveryClient.GetAsync("http://localhost:52075/");
 
             if (identityServer.IsError)
             {
@@ -29,7 +29,7 @@ namespace ConsoleClient
             HttpClient client = new HttpClient();
             client.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await client.GetAsync("http://localhost:49283/api/values");
+            var response = await client.GetAsync("http://localhost:49282/api/values");
             var content = await response.Content.ReadAsStringAsync();
             Console.WriteLine(JArray.Parse(content));
             Console.ReadKey();

@@ -4,6 +4,6 @@
     {
         public const string ApiName = "ResourceApi";
         public const string AuthenticationType = "Bearer";
-        public const string IdentityServerUrl = "http://localhost:49631";
+        public const string IdentityServerUrl = "http://localhost:52075";
     }
 }
