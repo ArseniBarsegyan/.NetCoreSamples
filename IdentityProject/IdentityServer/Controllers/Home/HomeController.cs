@@ -1,10 +1,10 @@
-﻿using IdentityServer4.Services;
+﻿using System.Threading.Tasks;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
 
-namespace IdentityServer.Controllers
+namespace IdentityServer.Controllers.Home
 {
     [SecurityHeaders]
     [AllowAnonymous]

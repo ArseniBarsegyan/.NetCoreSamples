@@ -1,6 +1,6 @@
 ﻿using IdentityServer4.Models;
 
-namespace IdentityServer.Controllers
+namespace IdentityServer.Controllers.Home
 {
     public class ErrorViewModel
     {
