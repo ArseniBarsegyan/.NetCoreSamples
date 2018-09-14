@@ -22,8 +22,8 @@ namespace ConsoleClient
             }
 
             //Get the token
-            var tokenClient = new TokenClient(identityServer.TokenEndpoint, "Client1", "secret");
-            var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("ars", "pass", "api1");
+            var tokenClient = new TokenClient(identityServer.TokenEndpoint, "client", "secret");
+            var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("ars", "LukE4321LukE#", "api1");
 
             //Call the API
             HttpClient client = new HttpClient();
