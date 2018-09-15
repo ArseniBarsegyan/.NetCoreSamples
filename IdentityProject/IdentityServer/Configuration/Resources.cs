@@ -22,15 +22,11 @@ namespace IdentityServer.Configuration
 
         public static IEnumerable<ApiResource> GetApiResources()
         {
-            return new[]
+            var apiResources = new List<ApiResource>
             {
-                // simple version with ctor
                 new ApiResource("ResourceApi", "ResourceApi")
-                {
-                    // this is needed for introspection when using reference tokens
-                    ApiSecrets = { new Secret("secret".Sha256()) }
-                }
             };
+            return apiResources;
         }
     }
 }
