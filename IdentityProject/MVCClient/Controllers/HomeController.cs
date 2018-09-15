@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Authentication;
@@ -11,8 +10,9 @@ namespace MVCClient.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            await CallApiUsingClientCredentials();
             return View();
         }
 
@@ -38,11 +38,11 @@ namespace MVCClient.Controllers
         public async Task<IActionResult> CallApiUsingClientCredentials()
         {
             var tokenClient = new TokenClient("http://localhost:52075/connect/token", "mvc", "secret");
-            var tokenResponse = await tokenClient.RequestClientCredentialsAsync("api1");
+            var tokenResponse = await tokenClient.RequestClientCredentialsAsync("ResourceApi");
 
             var client = new HttpClient();
             client.SetBearerToken(tokenResponse.AccessToken);
-            var content = await client.GetStringAsync("http://localhost:52075/identity");
+            var content = await client.GetStringAsync("http://localhost:49282/api/values");
 
             ViewBag.Json = JArray.Parse(content).ToString();
             return View("Json");

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,8 @@ namespace MVCClient
         {
             services.AddMvc();
 
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
             //Admin role can access both admin as well as editor resources
             //Editor role can access only ediotr resources, admin resources are not available for editor
             services.AddAuthorization(options =>
@@ -37,14 +40,18 @@ namespace MVCClient
                 {
                     options.SignInScheme = "Cookies";
 
-                    //Identity server address
-                    options.Authority = "http://localhost:52075/";
+                    options.Authority = "http://localhost:52075";
                     options.RequireHttpsMetadata = false;
 
                     options.ClientId = "mvc";
-                    options.Scope.Add("roles");
-                    options.Scope.Add("roles");
+                    options.ClientSecret = "secret";
+                    options.ResponseType = "code id_token";
+
                     options.SaveTokens = true;
+                    options.GetClaimsFromUserInfoEndpoint = true;
+
+                    options.Scope.Add("ResourceApi");
+                    options.Scope.Add("offline_access");
                 });
         }
 

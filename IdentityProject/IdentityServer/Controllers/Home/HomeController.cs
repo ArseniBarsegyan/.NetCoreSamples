@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using IdentityServer.Models;
 using IdentityServer4.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;

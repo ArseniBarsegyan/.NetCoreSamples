@@ -20,28 +20,31 @@ namespace IdentityServer.Configuration
                     },
                     AllowedScopes = { "ResourceApi" }
                 },
+                // OpenID Connect hybrid flow and client credentials client (MVC)
                 new Client
                 {
                     ClientId = "mvc",
-                    ClientName = "MVC",
-                    AllowedGrantTypes = GrantTypes.Implicit,
+                    ClientName = "MVC Client",
+                    AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
 
-                    RequireConsent = false,
+                    RequireConsent = true,
 
-                    // where to redirect to after login
+                    ClientSecrets =
+                    {
+                        new Secret("secret".Sha256())
+                    },
+
                     RedirectUris = { "http://localhost:52075/signin-oidc" },
-
-                    // where to redirect to after logout
                     PostLogoutRedirectUris = { "http://localhost:52075/signout-callback-oidc" },
 
-                    AllowedScopes = new List<string>
+                    AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         "ResourceApi"
                     },
-                    AlwaysIncludeUserClaimsInIdToken = true //It should be true to send Claims with token
-                }   
+                    AllowOfflineAccess = true
+                }
             };
         }
     }
