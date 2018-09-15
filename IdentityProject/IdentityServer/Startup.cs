@@ -61,16 +61,8 @@ namespace IdentityServer
             }
 
             app.UseStaticFiles();
-
-            //app.UseAuthentication(); // UseAuthentication not needed -- UseIdentityServer add this
             app.UseIdentityServer();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

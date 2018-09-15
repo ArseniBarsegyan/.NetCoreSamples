@@ -24,10 +24,9 @@ namespace IdentityServer.Controllers.Home
             if (_environment.IsDevelopment())
             {
                 // only show in development
-                return View();
             }
 
-            return NotFound();
+            return View();
         }
 
         /// <summary>

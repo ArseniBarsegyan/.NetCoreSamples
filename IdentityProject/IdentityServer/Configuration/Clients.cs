@@ -20,6 +20,28 @@ namespace IdentityServer.Configuration
                     },
                     AllowedScopes = { "ResourceApi" }
                 },
+                new Client
+                {
+                    ClientId = "mvc",
+                    ClientName = "MVC",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+
+                    RequireConsent = false,
+
+                    // where to redirect to after login
+                    RedirectUris = { "http://localhost:52075/signin-oidc" },
+
+                    // where to redirect to after logout
+                    PostLogoutRedirectUris = { "http://localhost:52075/signout-callback-oidc" },
+
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "ResourceApi"
+                    },
+                    AlwaysIncludeUserClaimsInIdToken = true //It should be true to send Claims with token
+                }   
             };
         }
     }

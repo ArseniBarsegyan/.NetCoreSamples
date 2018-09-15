@@ -38,10 +38,11 @@ namespace MVCClient
                     options.SignInScheme = "Cookies";
 
                     //Identity server address
-                    options.Authority = "http://localhost:49631/";
+                    options.Authority = "http://localhost:52075/";
                     options.RequireHttpsMetadata = false;
 
                     options.ClientId = "mvc";
+                    options.Scope.Add("roles");
                     options.Scope.Add("roles");
                     options.SaveTokens = true;
                 });
