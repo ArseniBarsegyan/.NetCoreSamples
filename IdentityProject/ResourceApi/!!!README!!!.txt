@@ -1,0 +1,1 @@
+﻿- By default ResourceApi run on port 49282, change in launchSettings.json file
