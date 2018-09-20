@@ -1,4 +1,5 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -22,14 +23,6 @@ namespace MVCClient
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
-            //Admin role can access both admin as well as editor resources
-            //Editor role can access only ediotr resources, admin resources are not available for editor
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("All", policy => policy.RequireRole("admin", "editor"));
-                options.AddPolicy("Admin", policy => policy.RequireRole("admin"));
-            });
-
             services.AddAuthentication(options =>
                 {
                     options.DefaultScheme = "Cookies";
@@ -52,6 +45,7 @@ namespace MVCClient
 
                     options.Scope.Add("ResourceApi");
                     options.Scope.Add("offline_access");
+                    options.ClaimActions.MapJsonKey("website", "website");
                 });
         }
 
@@ -60,7 +54,6 @@ namespace MVCClient
         {
             if (env.IsDevelopment())
             {
-                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -69,14 +62,9 @@ namespace MVCClient
             }
 
             app.UseAuthentication();
-            app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseStaticFiles();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }

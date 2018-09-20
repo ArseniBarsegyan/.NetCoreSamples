@@ -40,15 +40,13 @@ namespace IdentityServer.Configuration
                     ClientName = "MVC Client",
                     AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
 
-                    RequireConsent = true,
-
                     ClientSecrets =
                     {
                         new Secret("secret".Sha256())
                     },
 
-                    RedirectUris = { "http://localhost:52075/signin-oidc" },
-                    PostLogoutRedirectUris = { "http://localhost:52075/signout-callback-oidc" },
+                    RedirectUris = { "http://localhost:59411/signin-oidc" },
+                    PostLogoutRedirectUris = { "http://localhost:59411/signout-callback-oidc" },
 
                     AllowedScopes =
                     {
@@ -57,7 +55,7 @@ namespace IdentityServer.Configuration
                         "ResourceApi"
                     },
                     AllowOfflineAccess = true
-                }
+                },
             };
         }
     }

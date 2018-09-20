@@ -10,9 +10,8 @@ namespace MVCClient.Controllers
 {
     public class HomeController : Controller
     {
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            await CallApiUsingClientCredentials();
             return View();
         }
 
@@ -42,7 +41,7 @@ namespace MVCClient.Controllers
 
             var client = new HttpClient();
             client.SetBearerToken(tokenResponse.AccessToken);
-            var content = await client.GetStringAsync("http://localhost:49282/api/values");
+            var content = await client.GetStringAsync("http://localhost:52075/identity");
 
             ViewBag.Json = JArray.Parse(content).ToString();
             return View("Json");
