@@ -41,7 +41,7 @@ namespace MVCClient.Controllers
 
             var client = new HttpClient();
             client.SetBearerToken(tokenResponse.AccessToken);
-            var content = await client.GetStringAsync("http://localhost:52075/identity");
+            var content = await client.GetStringAsync("http://localhost:49282/api/values");
 
             ViewBag.Json = JArray.Parse(content).ToString();
             return View("Json");
@@ -53,7 +53,7 @@ namespace MVCClient.Controllers
 
             var client = new HttpClient();
             client.SetBearerToken(accessToken);
-            var content = await client.GetStringAsync("http://localhost:52075/identity");
+            var content = await client.GetStringAsync("http://localhost:49282/api/values");
 
             ViewBag.Json = JArray.Parse(content).ToString();
             return View("Json");
