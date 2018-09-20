@@ -10,6 +10,19 @@ namespace IdentityServer.Configuration
         {
             return new List<Client>
             {
+                // Angular client example
+                new Client
+                {
+                    ClientId = "Angular_client",
+                    ClientName = "Angular 4 Client",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    AllowedScopes = new List<string> { "openid", "profile", "MD.CoreApi", "custom.profile" },
+                    RedirectUris = new List<string> { "http://localhost:4200/auth-callback" },
+                    PostLogoutRedirectUris = new List<string> { "http://localhost:4200/logout-callback" },
+                    AllowedCorsOrigins = new List<string> { "http://localhost:4200" },
+                    AllowAccessTokensViaBrowser = true
+                },
+                // Console client
                 new Client
                 {
                     ClientId = "Client1",
