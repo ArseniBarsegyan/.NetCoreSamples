@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using IdentityServer.Helpers;
 using IdentityServer4;
 using IdentityServer4.Models;
 
@@ -16,10 +17,10 @@ namespace IdentityServer.Configuration
                     ClientId = "Angular_client",
                     ClientName = "Angular 4 Client",
                     AllowedGrantTypes = GrantTypes.Implicit,
-                    AllowedScopes = new List<string> { "openid", "profile", "MD.CoreApi", "custom.profile" },
-                    RedirectUris = new List<string> { "http://localhost:4200/auth-callback" },
-                    PostLogoutRedirectUris = new List<string> { "http://localhost:4200/logout-callback" },
-                    AllowedCorsOrigins = new List<string> { "http://localhost:4200" },
+                    AllowedScopes = new List<string> { "openid", "profile", ConstantsHelper.AllowedScope, "custom.profile" },
+                    RedirectUris = new List<string> { ConstantsHelper.AngularClientRedirectUris },
+                    PostLogoutRedirectUris = new List<string> { ConstantsHelper.AngularClientPostLogoutRedirectUris },
+                    AllowedCorsOrigins = new List<string> { ConstantsHelper.AngularClientAllowedCorsOrigins },
                     AllowAccessTokensViaBrowser = true
                 },
                 // Console client
@@ -31,7 +32,7 @@ namespace IdentityServer.Configuration
                     {
                         new Secret("secret".Sha256())
                     },
-                    AllowedScopes = { "ResourceApi" }
+                    AllowedScopes = { ConstantsHelper.AllowedScope }
                 },
                 // OpenID Connect hybrid flow and client credentials client (MVC)
                 new Client
@@ -45,14 +46,14 @@ namespace IdentityServer.Configuration
                         new Secret("secret".Sha256())
                     },
 
-                    RedirectUris = { "http://localhost:59411/signin-oidc" },
-                    PostLogoutRedirectUris = { "http://localhost:59411/signout-callback-oidc" },
+                    RedirectUris = { ConstantsHelper.MVCClientRedirectUris },
+                    PostLogoutRedirectUris = { ConstantsHelper.MVCClientPostLogoutRedirectUris },
 
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "ResourceApi"
+                        ConstantsHelper.AllowedScope
                     },
                     AllowOfflineAccess = true
                 },
