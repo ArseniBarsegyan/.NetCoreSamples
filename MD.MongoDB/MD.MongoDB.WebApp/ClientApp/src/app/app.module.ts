@@ -11,6 +11,7 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { NotesListComponent } from './notes-list/notes-list.component';
 import { NoteItemComponent } from './note-item/note-item.component';
+import { NotesService } from './notes.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { NoteItemComponent } from './note-item/note-item.component';
       { path: 'notes-list', component: NotesListComponent }
     ])
   ],
-  providers: [],
+  providers: [NotesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

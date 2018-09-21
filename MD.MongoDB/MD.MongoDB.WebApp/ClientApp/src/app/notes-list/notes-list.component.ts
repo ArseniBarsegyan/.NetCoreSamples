@@ -1,22 +1,28 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NotesService } from '../notes.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-notes-list',
   templateUrl: './notes-list.component.html',
   styleUrls: ['./notes-list.component.css']
 })
-export class NotesListComponent implements OnInit {
-  public notes: Note[];
+export class NotesListComponent implements OnInit, OnDestroy {
+  notes: Note[];
+  subscription: Subscription;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Note[]>(baseUrl + 'api/Notes/AllNotes')
-      .subscribe(result => {
-        this.notes = result;
-        console.log(result);
-      }, error => console.error(error));
+  constructor(private notesService: NotesService) {
   }
 
   ngOnInit() {
+    this.notesService.getNotes();
+    this.subscription = this.notesService.notesChanged
+      .subscribe((notes: Note[]) => {
+        this.notes = notes;
+      });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }
