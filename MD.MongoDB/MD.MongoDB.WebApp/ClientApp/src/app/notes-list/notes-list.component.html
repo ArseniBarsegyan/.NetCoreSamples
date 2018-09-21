@@ -1,3 +1,8 @@
-<div class="container">
-  <h2>Notes component works!</h2>
-</div>
+<div class="row">
+    <div class="col-xs-12">
+      <app-note-item
+        *ngFor="let item of notes; let i = index"
+        [note]="item"
+        [index]="i"></app-note-item>
+    </div>
+  </div>

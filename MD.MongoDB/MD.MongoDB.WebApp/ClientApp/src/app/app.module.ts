@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { NotesListComponent } from './notes-list/notes-list.component';
+import { NoteItemComponent } from './note-item/note-item.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { NotesListComponent } from './notes-list/notes-list.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    NotesListComponent
+    NotesListComponent,
+    NoteItemComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
