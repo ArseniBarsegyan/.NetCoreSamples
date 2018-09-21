@@ -16,10 +16,26 @@ namespace MD.MongoDB.DAL
             _notes = database.GetCollection<Note>("notes");
         }
 
-        public async Task<List<Note>> GetAll()
+        public async Task<List<Note>> GetAllAsync()
         {
             var filter = new BsonDocument();
             return await _notes.Find(filter).ToListAsync();
+        }
+
+        public async Task<Note> GetByIdAsync(string id)
+        {
+            return await _notes.Find(x => x.Id == id).SingleAsync();
+        }
+
+        public async Task<Note> CreateAsync(Note note)
+        {
+            await _notes.InsertOneAsync(note);
+            return note;
+        }
+
+        public async void DeleteAsync(string id)
+        {
+            await _notes.DeleteOneAsync(x => x.Id == id);
         }
     }
 }

@@ -11,15 +11,13 @@ namespace MD.MongoDB.ConsoleClient
         static void Main(string[] args)
         {
             string connectionString = "mongodb://localhost:27017";
-            Task<List<Note>> task = Task.Run(async () => await GetAllNotes(connectionString));
+            Task<List<Note>> task = Task.Run(async () =>
+            {
+                var repository = new NoteRepository(connectionString);
+                return await repository.GetAllAsync();
+            });
             task.Wait();
             var result = task.Result;
-        }
-
-        private static async Task<List<Note>> GetAllNotes(string connectionString)
-        {
-            var repository = new NoteRepository(connectionString);
-            return await repository.GetAll();
         }
     }
 }
