@@ -21,6 +21,13 @@ namespace MD.MongoDB.WebApp.Controllers
             return await _repository.GetAllAsync();
         }
 
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Create([FromBody] Note note)
+        {
+            await _repository.CreateAsync(note);
+            return Ok(note);
+        }
+
         [HttpPut("[action]")]
         public async Task Update(string id, [FromBody]Note note)
         {

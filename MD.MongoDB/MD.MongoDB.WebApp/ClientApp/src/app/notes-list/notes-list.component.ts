@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NotesService } from '../notes.service';
 import { Subscription } from 'rxjs/Subscription';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-notes-list',
@@ -11,7 +12,9 @@ export class NotesListComponent implements OnInit, OnDestroy {
   notes: Note[];
   subscription: Subscription;
 
-  constructor(private notesService: NotesService) {
+  constructor(private notesService: NotesService,
+    private router: Router,
+    private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -24,6 +27,11 @@ export class NotesListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  onNewNote() {
+    alert('ok');
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 
   onDeleted(id: string) {

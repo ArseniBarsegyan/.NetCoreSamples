@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { NotesListComponent } from './notes-list/notes-list.component';
 import { NoteItemComponent } from './note-item/note-item.component';
 import { NotesService } from './notes.service';
+import { CreateNoteComponent } from './create-note/create-note.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NotesService } from './notes.service';
     CounterComponent,
     FetchDataComponent,
     NotesListComponent,
-    NoteItemComponent
+    NoteItemComponent,
+    CreateNoteComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -31,7 +33,9 @@ import { NotesService } from './notes.service';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'notes-list', component: NotesListComponent }
+      { path: 'notes-list', component: NotesListComponent, children: [
+        { path: 'new', component: CreateNoteComponent }
+      ] }
     ])
   ],
   providers: [NotesService],
