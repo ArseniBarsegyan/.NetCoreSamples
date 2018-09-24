@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-note-item',
@@ -10,7 +11,7 @@ export class NoteItemComponent implements OnInit {
   @Input() index: number;
   @Output() deleted = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
@@ -31,6 +32,6 @@ export class NoteItemComponent implements OnInit {
   }
 
   onItemClick() {
-    alert('pressed');
+    this.router.navigate(['/details', this.note.id], {relativeTo: this.route});
   }
 }

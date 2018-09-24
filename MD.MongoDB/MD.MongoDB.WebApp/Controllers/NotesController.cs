@@ -28,7 +28,7 @@ namespace MD.MongoDB.WebApp.Controllers
             return Ok(note);
         }
 
-        [HttpPut("[action]")]
+        [HttpPut("[action]/{id}")]
         public async Task Update(string id, [FromBody]Note note)
         {
             await _repository.UpdateAsync(note);
