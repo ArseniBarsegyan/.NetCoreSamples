@@ -33,13 +33,13 @@ namespace MD.MongoDB.DAL
             return note;
         }
 
-        public async void UpdateAsync(Note note)
+        public async Task UpdateAsync(Note note)
         {
             var filter = Builders<Note>.Filter.Eq("Id", note.Id);
             await _notes.ReplaceOneAsync(filter, note);
         }
         
-        public async void DeleteAsync(string id)
+        public async Task DeleteAsync(string id)
         {
             await _notes.DeleteOneAsync(x => x.Id == id);
         }

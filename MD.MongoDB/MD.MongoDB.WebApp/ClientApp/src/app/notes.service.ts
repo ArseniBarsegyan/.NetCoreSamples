@@ -31,10 +31,13 @@ export class NotesService {
     }
 
     updateNote(note: Note) {
-        return this.http.put(this.baseUrl + 'api/Notes/Update' + '/' + note.id, note);
+        return this.http.put(this.baseUrl + 'api/Notes/Update/' + note.id, note);
     }
 
     deleteNote(id: string) {
+        this.notes = this.notes.filter(e => e.id !== id);
+        this.notesChanged.next(this.notes.slice());
+        console.log(this.baseUrl + 'api/Notes/Delete' + '/' + id);
         return this.http.delete(this.baseUrl + 'api/Notes/Delete' + '/' + id);
     }
 }

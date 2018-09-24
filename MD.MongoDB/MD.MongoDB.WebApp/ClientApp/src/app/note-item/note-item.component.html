@@ -5,7 +5,7 @@
     <p class="list-group-item-text">{{ note?.description }}</p>
   </div>
   <div class="">
-    <a [routerLink]="[delete/note?.id]"
+    <a (click)="onNoteDelete()"
        routerLinkActive="active">
       <span class="glyphicon glyphicon-minus-sign"></span>
     </a>

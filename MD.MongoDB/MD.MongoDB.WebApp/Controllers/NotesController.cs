@@ -22,15 +22,16 @@ namespace MD.MongoDB.WebApp.Controllers
         }
 
         [HttpPut("[action]")]
-        public void Update(string id, [FromBody]Note note)
+        public async Task Update(string id, [FromBody]Note note)
         {
-            _repository.UpdateAsync(note);
+            await _repository.UpdateAsync(note);
         }
 
-        [HttpDelete("[action]")]
-        public void Delete(string id)
+        [HttpDelete("[action]/{id}")]
+        public async Task<IActionResult> Delete(string id)
         {
-            _repository.DeleteAsync(id);
+            await _repository.DeleteAsync(id);
+            return Ok();
         }
     }
 }

@@ -3,6 +3,7 @@
       <app-note-item
         *ngFor="let item of notes; let i = index"
         [note]="item"
-        [index]="i"></app-note-item>
+        [index]="i"
+        (deleted)="onDeleted($event)"></app-note-item>
     </div>
   </div>

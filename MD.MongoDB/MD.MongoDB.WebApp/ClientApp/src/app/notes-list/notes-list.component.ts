@@ -25,4 +25,11 @@ export class NotesListComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+  onDeleted(id: string) {
+    this.notesService.deleteNote(id)
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
 }
