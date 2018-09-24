@@ -53,6 +53,6 @@ export class CreateNoteComponent implements OnInit {
     };
 
     this.notesService.createNote(note);
-    this.router.navigate(['notes-list']);
+    this.router.navigate(['notes']);
   }
 }

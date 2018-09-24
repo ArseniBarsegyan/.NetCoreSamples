@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+/* Buttons */
+/* Buttons */
+.button {
+  display: inline-block;
+  border: none; /* Remove borders */
+  color: white; /* Add a text color */
+  padding: 14px 28px; /* Add some padding */
+  cursor: pointer; /* Add a pointer cursor on mouse-over */
+  text-decoration: none;
+}
+
+.button:hover, .button:active, .button:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.success {
+  background-color: #4CAF50;
+}
+
+.success:hover {
+  background-color: #46a049;
+}
+
+.button-info {
+  background-color: #2196F3;
+}
+
+/* Blue */
+.button-info:hover {
+  background: #0b7dda;
+}
+
+.button:disabled {
+  background-color: #e7e7e7;
+  cursor: not-allowed
+}

@@ -1,8 +1,7 @@
 <div class="row">
-  <div style="padding-top: 10px;">
-      <a class="btn btn-success" [routerLink]='["./new"]'>New note</a>
+  <div style="padding: 10px;">
+      <a class="button success" [routerLink]='["./new"]'>New note</a>
   </div>
-  <router-outlet></router-outlet>
   <div class="col-xs-12">
     <app-note-item *ngFor="let item of notes; let i = index" [note]="item" [index]="i" (deleted)="onDeleted($event)"></app-note-item>
   </div>

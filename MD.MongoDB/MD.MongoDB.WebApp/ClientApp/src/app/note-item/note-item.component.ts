@@ -21,4 +21,16 @@ export class NoteItemComponent implements OnInit {
       this.deleted.emit(this.note.id);
     }
   }
+
+  onMouseOver(mainContainer: HTMLDivElement) {
+    mainContainer.style.backgroundColor = "#DEDBDC";
+  }
+
+  onMouseLeave(mainContainer: HTMLDivElement) {
+    mainContainer.style.backgroundColor = "white";
+  }
+
+  onItemClick() {
+    alert('pressed');
+  }
 }
