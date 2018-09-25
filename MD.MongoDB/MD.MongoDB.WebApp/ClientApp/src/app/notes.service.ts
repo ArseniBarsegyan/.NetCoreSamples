@@ -19,11 +19,18 @@ export class NotesService {
         return this.notes.slice();
     }
 
+    getNoteById(id: string) {
+        const note = this.notes.find(function(item) {
+            return item.id === id;
+        });
+        return note;
+    }
+
     // In case of create new note retrieve all notes again and invoke event
     createNote(note: Note) {
         this.http.post(this.baseUrl + 'api/Notes/Create', note)
             .subscribe((result: Note) => {
-                this.notes.push(note);
+                this.notes.push(result);
                 this.notesChanged.next(this.notes.slice());
             }, error => {
                 console.log(error);

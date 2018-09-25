@@ -1,3 +1,11 @@
-<p>
-  note-edit works!
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    {{ note?.id }}
+  </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">      
+      <p>{{ note.description }}</p>
+    </div>
+  </div>
+  <button class="button button-def" (click)="onEditClick()">Edit</button>

@@ -15,6 +15,14 @@
   text-decoration: none;
 }
 
+.button-def {
+  color: black;
+}
+
+.button-def:hover, .button-def:active, .button-def:visited {
+  color: black;
+}
+
 .success {
   background-color: #4CAF50;
 }
