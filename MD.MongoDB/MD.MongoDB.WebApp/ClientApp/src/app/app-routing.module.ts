@@ -15,12 +15,12 @@ const appRoutes: Routes = [
         {path: '', component: NoteStartComponent},
         {path: 'new', component: CreateNoteComponent},
         {path: ':id', component: NoteDetailsComponent},
-        {path: ':id/edit', component: NoteEditComponent},
+        {path: 'edit/:id', component: NoteEditComponent},
       ]
     },
     {path: '**', component: PageNotFoundComponent}
   ];
-  
+
   @NgModule({
     imports: [
       RouterModule.forRoot(

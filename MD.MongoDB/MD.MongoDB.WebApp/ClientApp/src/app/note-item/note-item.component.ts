@@ -24,14 +24,14 @@ export class NoteItemComponent implements OnInit {
   }
 
   onMouseOver(mainContainer: HTMLDivElement) {
-    mainContainer.style.backgroundColor = "#DEDBDC";
+    mainContainer.style.backgroundColor = '#DEDBDC';
   }
 
   onMouseLeave(mainContainer: HTMLDivElement) {
-    mainContainer.style.backgroundColor = "white";
+    mainContainer.style.backgroundColor = 'white';
   }
 
   onItemClick() {
-    this.router.navigate(['/details', this.note.id], {relativeTo: this.route});
+    this.router.navigate(['./edit', this.note.id], {relativeTo: this.route});
   }
 }
