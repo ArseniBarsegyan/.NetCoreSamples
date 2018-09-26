@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotesService } from '../notes.service';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-note',
@@ -11,6 +12,7 @@ import { NotesService } from '../notes.service';
 export class CreateNoteComponent implements OnInit {
   createComponentForm: FormGroup;
   description = '';
+  public message: string;
 
   constructor(private notesService: NotesService, private formbuilder: FormBuilder, private router: Router) {
   }
@@ -22,26 +24,20 @@ export class CreateNoteComponent implements OnInit {
     });
   }
 
-  onFileChange(event: any, fileNames: HTMLLabelElement) {
-    const reader = new FileReader();
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-
-      let files = event.target.files;
-
-      for (let el of files) {
-        fileNames.innerHTML += el.name + ' ';
-      }
-
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.createComponentForm.controls['file'].setValue({
-          filename: file.name,
-          filetype: file.type,
-          value: reader.result.split(',')[1]
-        });
-      };
+  onFileChange(files) {
+    if (files.length === 0) {
+      return;
     }
+
+    const formData = new FormData();
+
+    for (let file of files) {
+      formData.append(file.name, file);
+    }
+
+    this.notesService.uploadFile(formData)
+    .subscribe(data => {
+    });
   }
 
   onSubmit(createComponentForm: NgForm) {

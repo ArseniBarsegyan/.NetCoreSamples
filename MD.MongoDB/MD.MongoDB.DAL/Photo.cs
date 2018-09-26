@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.IO;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace MD.MongoDB.DAL
 {
     /// <summary>
-    /// Note model that is stored in database.
+    /// Photo model that is stored in database.
     /// </summary>
-    public class Note
+    public class Photo
     {
         /// <summary>
         /// Unique identifier of the note.
@@ -17,19 +16,18 @@ namespace MD.MongoDB.DAL
         public string Id { get; set; }
 
         /// <summary>
-        /// Time of note creation.
+        /// Id of the note to which Photo is belong.
         /// </summary>
-        [BsonRepresentation(BsonType.DateTime)]
-        public DateTime Date { get; set; }
+        public string NoteId { get; set; }
 
         /// <summary>
-        /// Text of the note.
+        /// File content as byte array.
         /// </summary>
-        public string Description { get; set; }
+        public byte[] Content { get; set; }
 
         /// <summary>
-        /// List of all files that are linked to note.
+        /// Saved filename.
         /// </summary>
-        public List<ObjectId> FilesIds { get; set; }
+        public string FileName { get; set; }
     }
 }

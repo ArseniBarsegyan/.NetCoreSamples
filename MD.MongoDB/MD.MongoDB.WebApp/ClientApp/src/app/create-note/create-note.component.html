@@ -12,7 +12,7 @@
                name="file"
                id="photo"
                class="upload"
-               (change)="onFileChange($event, fileNames)"
+               (change)="onFileChange(fileInput.files)"
                #fileInput
                multiple />
         <label for="photo">Pick photos...</label>

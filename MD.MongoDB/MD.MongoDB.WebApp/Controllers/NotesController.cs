@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using MD.MongoDB.DAL;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 
 namespace MD.MongoDB.WebApp.Controllers
 {
@@ -26,6 +29,30 @@ namespace MD.MongoDB.WebApp.Controllers
         {
             await _repository.CreateAsync(note);
             return Ok(note);
+        }
+
+        [HttpPost("[action]/{noteId}")]
+        public async Task<IActionResult> UploadPhoto(string noteId)
+        {
+            try
+            {
+                var file = Request.Form.Files[0];
+                if (file.Length > 0)
+                {
+                    var photoModel = new Photo
+                    {
+                        NoteId = noteId,
+                        FileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"'),
+                        Content = file.ToBson()
+                    };
+                    await _repository.SavePhoto(photoModel);
+                }
+                return Json("Upload Successful.");
+            }
+            catch (System.Exception ex)
+            {
+                return Json("Upload Failed: " + ex.Message);
+            }
         }
 
         [HttpPut("[action]/{id}")]
