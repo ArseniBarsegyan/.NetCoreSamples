@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -53,15 +54,10 @@ namespace MD.MongoDB.DAL
             return note;
         }
 
-        /// <summary>
-        /// Save file to database.
-        /// </summary>
-        /// <param name="photo">photo model to be stored.</param>
-        /// <returns></returns>
         public async Task<ObjectId> SavePhoto(Photo photo)
         {
-            ObjectId id = _gridFs.UploadFromBytes(photo.FileName, photo.Content);
-            return id;
+            ObjectId imageId = await _gridFs.UploadFromBytesAsync(photo.FileName, photo.Content);
+            return imageId;
         }
 
         /// <summary>

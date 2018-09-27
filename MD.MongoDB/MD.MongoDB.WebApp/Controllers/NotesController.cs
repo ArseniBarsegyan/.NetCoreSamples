@@ -39,11 +39,17 @@ namespace MD.MongoDB.WebApp.Controllers
                 var file = Request.Form.Files[0];
                 if (file.Length > 0)
                 {
+                    byte[] buffer;
+                    using (var ms = new MemoryStream())
+                    {
+                        file.CopyTo(ms);
+                        buffer = ms.ToArray();
+                    }
+
                     var photoModel = new Photo
                     {
-                        NoteId = noteId,
                         FileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"'),
-                        Content = file.ToBson()
+                        Content = buffer
                     };
                     await _repository.SavePhoto(photoModel);
                 }

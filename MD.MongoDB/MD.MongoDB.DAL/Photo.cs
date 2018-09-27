@@ -16,11 +16,6 @@ namespace MD.MongoDB.DAL
         public string Id { get; set; }
 
         /// <summary>
-        /// Id of the note to which Photo is belong.
-        /// </summary>
-        public string NoteId { get; set; }
-
-        /// <summary>
         /// File content as byte array.
         /// </summary>
         public byte[] Content { get; set; }
