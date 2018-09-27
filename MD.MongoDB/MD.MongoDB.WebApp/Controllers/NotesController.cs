@@ -51,14 +51,15 @@ namespace MD.MongoDB.WebApp.Controllers
                         FileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"'),
                         Content = buffer
                     };
-                    await _repository.SavePhoto(photoModel);
-                }
-                return Json("Upload Successful.");
+                    var id = await _repository.SavePhoto(photoModel);
+                    return Json(id.ToString());
+                }                
             }
             catch (System.Exception ex)
             {
                 return Json("Upload Failed: " + ex.Message);
             }
+            return Json(0);
         }
 
         [HttpPut("[action]/{id}")]

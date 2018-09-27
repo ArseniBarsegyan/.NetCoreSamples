@@ -13,6 +13,7 @@ export class CreateNoteComponent implements OnInit {
   createComponentForm: FormGroup;
   description = '';
   public message: string;
+  formData: FormData;
 
   constructor(private notesService: NotesService, private formbuilder: FormBuilder, private router: Router) {
   }
@@ -25,19 +26,17 @@ export class CreateNoteComponent implements OnInit {
   }
 
   onFileChange(files) {
+    if (this.formData == null) {
+      this.formData = new FormData();
+    }
+
     if (files.length === 0) {
       return;
     }
 
-    const formData = new FormData();
-
     for (let file of files) {
-      formData.append(file.name, file);
+      this.formData.append(file.name, file);
     }
-
-    this.notesService.uploadFile(formData)
-    .subscribe(data => {
-    });
   }
 
   onSubmit(createComponentForm: NgForm) {
@@ -48,7 +47,16 @@ export class CreateNoteComponent implements OnInit {
       filesIds: []
     };
 
-    this.notesService.createNote(note);
-    this.router.navigate(['notes']);
+    if (this.formData != null) {
+      this.notesService.uploadFile(this.formData)
+      .subscribe((id: string) => {      
+        note.id = id;
+        this.notesService.createNote(note);
+        this.router.navigate(['notes']);
+      }); 
+    } else {
+      this.notesService.createNote(note);
+      this.router.navigate['notes'];
+    }      
   }
 }
