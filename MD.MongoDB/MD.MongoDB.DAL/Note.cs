@@ -28,7 +28,7 @@ namespace MD.MongoDB.DAL
         public string Description { get; set; }
 
         /// <summary>
-        /// List of all files that are linked to note.
+        /// List of all files ids that are linked to note.
         /// </summary>
         public List<ObjectId> FilesIds { get; set; }
     }

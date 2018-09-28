@@ -4,7 +4,8 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using MD.MongoDB.DAL;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
+using Microsoft.Extensions.Primitives;
+using Newtonsoft.Json;
 
 namespace MD.MongoDB.WebApp.Controllers
 {
@@ -25,20 +26,17 @@ namespace MD.MongoDB.WebApp.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> Create([FromBody] Note note)
+        public async Task<Note> Create()
         {
-            await _repository.CreateAsync(note);
-            return Ok(note);
-        }
+            var note = JsonConvert.DeserializeObject<Note>(Request.Form["note"]);
+            var files = Request.Form.Files;
+            var photos = new List<Photo>();
 
-        [HttpPost("[action]/{noteId}")]
-        public async Task<IActionResult> UploadPhoto(string noteId)
-        {
-            try
+            if (files != null)
             {
-                var file = Request.Form.Files[0];
-                if (file.Length > 0)
+                foreach (var file in files)
                 {
+                    if (file.Length <= 0) continue;
                     byte[] buffer;
                     using (var ms = new MemoryStream())
                     {
@@ -51,15 +49,11 @@ namespace MD.MongoDB.WebApp.Controllers
                         FileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"'),
                         Content = buffer
                     };
-                    var id = await _repository.SavePhoto(photoModel);
-                    return Json(id.ToString());
-                }                
+                    photos.Add(photoModel);
+                }
             }
-            catch (System.Exception ex)
-            {
-                return Json("Upload Failed: " + ex.Message);
-            }
-            return Json(0);
+
+            return await _repository.CreateNoteAsync(note, photos);
         }
 
         [HttpPut("[action]/{id}")]

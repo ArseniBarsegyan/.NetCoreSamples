@@ -26,9 +26,8 @@ export class NotesService {
         return note;
     }
 
-    // In case of create new note retrieve all notes again and invoke event
-    createNote(note: Note) {
-        this.http.post(this.baseUrl + 'api/Notes/Create', note)
+    createNote(formData: FormData) {
+        this.http.post(this.baseUrl + 'api/Notes/Create', formData)
             .subscribe((result: Note) => {
                 this.notes.push(result);
                 this.notesChanged.next(this.notes.slice());

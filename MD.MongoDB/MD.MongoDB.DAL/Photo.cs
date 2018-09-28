@@ -1,5 +1,4 @@
-﻿using System.IO;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace MD.MongoDB.DAL

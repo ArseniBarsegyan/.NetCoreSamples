@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -44,20 +44,25 @@ namespace MD.MongoDB.DAL
         }
 
         /// <summary>
-        /// Create note model in database.
+        /// Save note to database. Also save photos of the notes separately with GridFS.
         /// </summary>
-        /// <param name="note">Note model to be created.</param>
+        /// <param name="note">Note to be saved to database.</param>
+        /// <param name="photos">List of photos.</param>
         /// <returns></returns>
-        public async Task<Note> CreateAsync(Note note)
+        public async Task<Note> CreateNoteAsync(Note note, IEnumerable<Photo> photos = null)
         {
+            if (photos != null)
+            {
+                foreach (var photo in photos)
+                {
+                    if (!photo.Content.Any()) continue;
+                    ObjectId imageId = await _gridFs.UploadFromBytesAsync(photo.FileName, photo.Content);
+                    note.FilesIds?.Add(imageId);
+                }
+            }
+
             await _notes.InsertOneAsync(note);
             return note;
-        }
-
-        public async Task<ObjectId> SavePhoto(Photo photo)
-        {
-            ObjectId imageId = await _gridFs.UploadFromBytesAsync(photo.FileName, photo.Content);
-            return imageId;
         }
 
         /// <summary>
