@@ -65,11 +65,6 @@ namespace MD.MongoDB.DAL
             return note;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="note"></param>
-        /// <returns></returns>
         public async Task UpdateAsync(Note note)
         {
             var filter = Builders<Note>.Filter.Eq("Id", note.Id);
@@ -83,6 +78,11 @@ namespace MD.MongoDB.DAL
         /// <returns></returns>
         public async Task DeleteAsync(string id)
         {
+            var noteToDelete = await _notes.Find(x => x.Id == id).SingleAsync();
+            foreach (var filesId in noteToDelete.FilesIds)
+            {
+                await _gridFs.DeleteAsync(filesId);
+            }
             await _notes.DeleteOneAsync(x => x.Id == id);
         }
     }

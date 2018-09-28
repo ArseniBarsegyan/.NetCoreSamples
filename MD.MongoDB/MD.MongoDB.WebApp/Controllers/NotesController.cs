@@ -4,7 +4,6 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using MD.MongoDB.DAL;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 
 namespace MD.MongoDB.WebApp.Controllers
