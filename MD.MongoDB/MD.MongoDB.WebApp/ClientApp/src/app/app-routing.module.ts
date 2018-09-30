@@ -16,6 +16,7 @@ const appRoutes: Routes = [
       { path: 'new', component: CreateNoteComponent },
       { path: ':id', component: NoteDetailsComponent },
       { path: 'edit/:id', component: NoteEditComponent },
+      { path: 'details/:id', component: NoteDetailsComponent }
     ]
   },
   { path: '**', component: PageNotFoundComponent }

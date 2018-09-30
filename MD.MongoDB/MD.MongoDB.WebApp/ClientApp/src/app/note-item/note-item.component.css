@@ -1,15 +1,10 @@
-.note-item-container {
-  cursor: pointer;
-  z-index: 0;
-  max-width: 500px;
-}
-
 .text-container {
   text-overflow: ellipsis;
-  max-width: 500px;
-  height: 70px;
+  width: 200px;
+  height: 80px;
   white-space: normal;
-  overflow: hidden;  
+  overflow: hidden;
+
   padding: 10px;
 }
 

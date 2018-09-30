@@ -24,7 +24,8 @@ namespace MD.MongoDB.WebApp.Controllers
         [HttpGet("[action]")]
         public async Task<IEnumerable<NoteDto>> AllNotes()
         {
-            return await _notesService.GetAllNotesAsync();
+            var allNotes = await _notesService.GetAllNotesAsync();
+            return allNotes;
         }
 
         [HttpPost("[action]")]

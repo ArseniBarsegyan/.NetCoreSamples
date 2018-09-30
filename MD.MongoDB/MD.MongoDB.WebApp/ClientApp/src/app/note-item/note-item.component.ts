@@ -8,7 +8,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class NoteItemComponent implements OnInit {
   @Input() note: Note;
-  @Input() index: number;
   @Output() deleted = new EventEmitter<string>();
 
   constructor(private router: Router, private route: ActivatedRoute) { }
@@ -21,17 +20,5 @@ export class NoteItemComponent implements OnInit {
     if (result) {
       this.deleted.emit(this.note.id);
     }
-  }
-
-  onMouseOver(mainContainer: HTMLDivElement) {
-    mainContainer.style.backgroundColor = '#DEDBDC';
-  }
-
-  onMouseLeave(mainContainer: HTMLDivElement) {
-    mainContainer.style.backgroundColor = 'white';
-  }
-
-  onItemClick() {
-    this.router.navigate(['./edit', this.note.id], {relativeTo: this.route});
   }
 }

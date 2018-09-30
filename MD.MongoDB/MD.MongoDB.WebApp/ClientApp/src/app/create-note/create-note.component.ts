@@ -48,7 +48,7 @@ export class CreateNoteComponent implements OnInit {
       id: '',
       date: new Date(),
       description: createComponentForm.controls['description'].value,
-      files: []
+      photos: []
     };
 
     this.formData.append('note', JSON.stringify(note));

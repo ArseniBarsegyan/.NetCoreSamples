@@ -1,14 +1,18 @@
-<div #mainContainer
-    (mouseover)="onMouseOver(mainContainer)" 
-    (mouseleave)="onMouseLeave(mainContainer)"    
-    class="list-group-item clearfix note-item-container">
-  <div class="text-container" (click)="onItemClick()">
+<a style="cursor: pointer; z-index: 0"
+   [routerLink]="['./details', this.note.id]"
+   routerLinkActive="active"
+   class="list-group-item clearfix">
+    <span class="pull-left">
+        <img src="data:image/gif;base64,{{ note?.photos[0]?.content }}"
+        alt="No photos"
+        class="img-responsive"
+        style="max-width: 160px; max-height: 100px;" />
+    </span>
+   <div class="pull-right text-container">
     <h4 class="list-group-item-heading">{{ note?.date | date }}</h4>
     <p class="list-group-item-text">{{ note?.description }}</p>
-  </div>
-  <div>
-    <a (click)="onNoteDelete()" routerLinkActive="active">
-      <span class="glyphicon glyphicon-minus-sign delete-button"></span>
-    </a>
-  </div>
-</div>
+    <div (click)="onNoteDelete()" style="top:100%;">
+        <span class="glyphicon glyphicon-minus-sign delete-button"></span>
+    </div>
+  </div>  
+</a>

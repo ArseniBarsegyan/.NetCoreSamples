@@ -30,7 +30,6 @@ export class NotesListComponent implements OnInit, OnDestroy {
   }
 
   onNewNote() {
-    alert('ok');
     this.router.navigate(['new'], {relativeTo: this.route});
   }
 
@@ -39,5 +38,12 @@ export class NotesListComponent implements OnInit, OnDestroy {
       .subscribe((response) => {
         console.log(response);
       });
+  }
+
+  onNoteItemClicked(id: string) {
+    let notesList = document.getElementById('notesList');
+    notesList.classList.remove('active');
+    notesList.classList.add('active');
+    console.log(id);
   }
 }

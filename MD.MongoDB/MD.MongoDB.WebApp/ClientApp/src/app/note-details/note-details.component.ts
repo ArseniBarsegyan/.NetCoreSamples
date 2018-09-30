@@ -9,15 +9,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NoteDetailsComponent implements OnInit {
   note: Note;
-  id: number;
+  id: string;
+  editMode: boolean;
 
   constructor(private route: ActivatedRoute, private notesService: NotesService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = +params['id'];
-      // this.note = this.notesService.getNoteById(this.id);
+      this.id = params['id'];
+      this.note = this.notesService.getNoteById(this.id);
     });
   }
 
