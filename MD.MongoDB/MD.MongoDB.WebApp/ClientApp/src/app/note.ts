@@ -1,6 +1,6 @@
 interface Note {
-    id: string;
-    date: Date;
-    description: string;
-    filesIds: string[];
-  }
+  id: string;
+  date: Date;
+  description: string;
+  files: Photo[];
+}

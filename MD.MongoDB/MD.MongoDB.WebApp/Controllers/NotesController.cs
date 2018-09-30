@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using MD.MongoDB.BLL.Dto;
+using MD.MongoDB.BLL.Services;
 using MD.MongoDB.DAL;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -11,25 +14,26 @@ namespace MD.MongoDB.WebApp.Controllers
     [Route("api/[controller]")]
     public class NotesController : Controller
     {
-        private readonly NoteRepository _repository;
+        private readonly INotesService _notesService;
 
-        public NotesController()
+        public NotesController(INotesService notesService)
         {
-            _repository = new NoteRepository("mongodb://localhost:27017");
+            _notesService = notesService;
         }
 
         [HttpGet("[action]")]
-        public async Task<IEnumerable<Note>> AllNotes()
+        public async Task<IEnumerable<NoteDto>> AllNotes()
         {
-            return await _repository.GetAllAsync();
+            return await _notesService.GetAllNotesAsync();
         }
 
         [HttpPost("[action]")]
-        public async Task<Note> Create()
+        public async Task<NoteDto> Create()
         {
-            var note = JsonConvert.DeserializeObject<Note>(Request.Form["note"]);
+            var note = JsonConvert.DeserializeObject<NoteDto>(Request.Form["note"]);
             var files = Request.Form.Files;
-            var photos = new List<Photo>();
+
+            var photoDtos = new List<PhotoDto>();
 
             if (files != null)
             {
@@ -43,28 +47,27 @@ namespace MD.MongoDB.WebApp.Controllers
                         buffer = ms.ToArray();
                     }
 
-                    var photoModel = new Photo
+                    var photoDto = new PhotoDto
                     {
-                        FileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"'),
-                        Content = buffer
+                        Name = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"'),
+                        Content = Convert.ToBase64String(buffer)
                     };
-                    photos.Add(photoModel);
+                    photoDtos.Add(photoDto);
                 }
             }
-
-            return await _repository.CreateNoteAsync(note, photos);
+            note.Photos = photoDtos;
+            return await _notesService.CreateAsync(note);
         }
 
         [HttpPut("[action]/{id}")]
         public async Task Update(string id, [FromBody]Note note)
         {
-            await _repository.UpdateAsync(note);
         }
 
         [HttpDelete("[action]/{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            await _repository.DeleteAsync(id);
+            await _notesService.DeleteNoteAsync(id);
             return Ok();
         }
     }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotesService } from '../notes.service';
-import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-note',
@@ -49,7 +48,7 @@ export class CreateNoteComponent implements OnInit {
       id: '',
       date: new Date(),
       description: createComponentForm.controls['description'].value,
-      filesIds: []
+      files: []
     };
 
     this.formData.append('note', JSON.stringify(note));

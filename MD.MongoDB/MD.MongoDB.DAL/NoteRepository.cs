@@ -8,7 +8,7 @@ using MongoDB.Driver.GridFS;
 namespace MD.MongoDB.DAL
 {
     /// <summary>
-    /// Provide CRUD operations with MongoDB.
+    /// Provide CRUD operations with note entities in MongoDB.
     /// </summary>
     public class NoteRepository
     {
@@ -27,7 +27,7 @@ namespace MD.MongoDB.DAL
         /// Get all notes from database.
         /// </summary>
         /// <returns></returns>
-        public async Task<List<Note>> GetAllAsync()
+        public async Task<IEnumerable<Note>> GetAllAsync()
         {
             var filter = new BsonDocument();
             return await _notes.Find(filter).ToListAsync();
@@ -72,18 +72,15 @@ namespace MD.MongoDB.DAL
         }
         
         /// <summary>
-        /// Delete note from database by id.
+        /// Delete note and all it's photos from database by note id.
         /// </summary>
         /// <param name="id">id of the note to be deleted.</param>
         /// <returns></returns>
-        public async Task DeleteAsync(string id)
+        public async Task<Note> DeleteAsync(string id)
         {
             var noteToDelete = await _notes.Find(x => x.Id == id).SingleAsync();
-            foreach (var filesId in noteToDelete.FilesIds)
-            {
-                await _gridFs.DeleteAsync(filesId);
-            }
             await _notes.DeleteOneAsync(x => x.Id == id);
+            return noteToDelete;
         }
     }
 }

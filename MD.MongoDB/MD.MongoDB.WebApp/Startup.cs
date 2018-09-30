@@ -1,6 +1,8 @@
+using MD.MongoDB.BLL;
+using MD.MongoDB.BLL.Services;
+using MD.MongoDB.WebApp.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
@@ -20,8 +22,10 @@ namespace MD.MongoDB.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<INotesService, NotesService>(cfg => new NotesService(ConstantsHelper.MongoDbConnectionString));
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

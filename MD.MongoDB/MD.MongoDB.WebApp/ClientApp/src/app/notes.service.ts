@@ -36,12 +36,6 @@ export class NotesService {
             });
     }
 
-    uploadFile(formData: FormData) {
-        return this.http.post(this.baseUrl + 'api/Notes/UploadPhoto/' + '5ba92cef67cb1011b4faf1ae', formData, {
-            reportProgress: true
-        });
-    }
-
     updateNote(note: Note) {
         return this.http.put(this.baseUrl + 'api/Notes/Update/' + note.id, note);
     }
