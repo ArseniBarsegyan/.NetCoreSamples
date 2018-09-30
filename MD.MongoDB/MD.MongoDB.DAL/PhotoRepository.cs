@@ -26,7 +26,7 @@ namespace MD.MongoDB.DAL
         /// </summary>
         /// <param name="fileIds">Ids of the files to be find.</param>
         /// <returns></returns>
-        public async Task<IEnumerable<Photo>> GetPhotosByIds(IEnumerable<ObjectId> fileIds)
+        public IEnumerable<Photo> GetPhotosByIds(IEnumerable<ObjectId> fileIds)
         {
             var resultList = new List<Photo>();
 

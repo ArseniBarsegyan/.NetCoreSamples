@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MD.MongoDB.BLL.Dto;
-using MD.MongoDB.BLL.Services;
 using MD.MongoDB.DAL;
-using MongoDB.Bson;
 
-namespace MD.MongoDB.BLL
+namespace MD.MongoDB.BLL.Services
 {
     public class NotesService : INotesService
     {
@@ -58,7 +56,7 @@ namespace MD.MongoDB.BLL
                 Description = noteModel.Description,
                 Id = noteModel.Id
             };
-            var allPhotos = await _photoRepository.GetPhotosByIds(noteModel.FilesIds);
+            var allPhotos = _photoRepository.GetPhotosByIds(noteModel.FilesIds);
             var photoDtos = ConvertToPhotoDtos(allPhotos);
             SetNoteIdToAllPhotoDto(photoDtos, dto.Id);
             return dto;
@@ -88,7 +86,7 @@ namespace MD.MongoDB.BLL
                     Description = noteModel.Description
                 };
 
-                var allPhotoModels = await _photoRepository.GetPhotosByIds(noteModel.FilesIds);
+                var allPhotoModels = _photoRepository.GetPhotosByIds(noteModel.FilesIds);
                 noteDto.Photos = ConvertToPhotoDtos(allPhotoModels);
                 SetNoteIdToAllPhotoDto(noteDto.Photos, noteDto.Id);
 
