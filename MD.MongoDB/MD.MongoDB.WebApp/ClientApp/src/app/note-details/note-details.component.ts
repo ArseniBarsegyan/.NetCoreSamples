@@ -25,7 +25,7 @@ export class NoteDetailsComponent implements OnInit {
   onImageClick(rootImage: HTMLImageElement, modalWindow: HTMLDivElement, modalImage: HTMLImageElement, caption: HTMLDivElement) {
     modalWindow.style.display = 'block';
     modalImage.setAttribute('src', rootImage.src);
-    caption.innerHTML = rootImage.alt;
+    caption.innerHTML = this.note.description;
   }
 
   onCloseModal(modalImage: HTMLDivElement) {
